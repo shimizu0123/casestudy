@@ -1,5 +1,5 @@
 public class Calc_Velocity {
-	public int velocity(String data) {
+	public static Velocity velocity(String data) {
 
 		int S_EW;//東―西軸方向のどちらに向かって進むのか
 		int S_NS;//北―南軸方向のどちらに向かって進むのか
@@ -45,7 +45,7 @@ public class Calc_Velocity {
 
 		System.out.println(Vr + "kn");
 
-		return 0;
+		return new Velocity(S_Vr, Vel, deg, Vr);
 	}
 }
 

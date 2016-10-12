@@ -4,14 +4,15 @@ public class DB_Item {
 
 	String modeS;
 	String callSign;
-	PlanePosition position;
+	Position_Dec position;
 	Calc_Velocity velocity;
 	Calendar cal;
 
-	DB_Item(){
+	DB_Item(String modeS,String callSign,Position_Dec position,Calc_Velocity velocity){
 		this.modeS = modeS;
 		this.callSign = callSign;
-		this.position
+		this.position = position;
+		this.cal = Calendar.getInstance();
 	}
 
 }
