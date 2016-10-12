@@ -1,4 +1,3 @@
-
 public class PositionDecoder {
 
 
@@ -15,7 +14,11 @@ public class PositionDecoder {
 		//EVENフレームの場合
 		if((9 <= TC && TC <= 18) && data.substring(108,108+1) == "0"){
 
-
+			data_E_list(data);
+			for(Data_Even data:list){
+				
+			}
+				
 			/*
 			 * arraylist：リスト_データ_EVENにdata、（タイムスタンプ？）、ModeSアドレスを格納
 			 */
@@ -66,5 +69,6 @@ public class PositionDecoder {
 	static int floor(double x){
 		return (int)Math.floor(x);
 	}
+	
 
 }

@@ -2,12 +2,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ADS_B_analyzer<SBS_3_Data> {
 
 	SBS_3_Data Data;
 	public String data;
 	public int num;
+	public List<Data_List> dataList = new ArrayList<Data_List>();
 
 	String str;
 
@@ -21,7 +24,7 @@ public class ADS_B_analyzer<SBS_3_Data> {
 		  Nic_analyzer Nic = new Nic_analyzer();
 
 		  try{
-			  File file = new File("1000test2.txt");
+			  File file = new File("test1000.txt");
 			  FileReader filereader = new FileReader(file);
 
 			  int ch;
@@ -56,14 +59,6 @@ public class ADS_B_analyzer<SBS_3_Data> {
 						if(tcnum >= 9 && tcnum <= 18){
 							System.out.println("Altitude = " +  Alt.alt_calc(data) + "ft");
 							System.out.println("Nicnum = " + Nic.nic_analyz(data, tcnum));
-							if(Integer.parseInt(data.substring(108,108+1), 2) == 0){
-								System.out.println("EVEN");
-							}
-							else if (Integer.parseInt(data.substring(108,108+1), 2) == 1){
-								System.out.println("ODD");
-							}
-
-
 						}
 
 						if(tcnum == 19){
@@ -89,6 +84,18 @@ public class ADS_B_analyzer<SBS_3_Data> {
 		return null;
 
 	}
+	@Deprecated
+	private boolean judge_Odd(String data) {
+		return Integer.parseInt(data.substring(108,108+1), 2) == 1;
+	}
+	@Deprecated
+	private boolean judge_Even(String data) {
+		return Integer.parseInt(data.substring(108,108+1), 2) == 0;
+	}
+
+	public int indexOf(Object modeS){
+		return dataList.indexOf(modeS);
+	}
 
 	public int DFnum(String data){
 
@@ -97,6 +104,9 @@ public class ADS_B_analyzer<SBS_3_Data> {
 		return num;
 	}
 
+	public void add_Data_List(String data) {
+		dataList.add(new Data_List(data));
+	}
 
 }
 
