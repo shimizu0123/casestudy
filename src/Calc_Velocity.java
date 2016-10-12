@@ -1,4 +1,4 @@
-public class Velocity {
+public class Calc_Velocity {
 	public int velocity(String data) {
 
 		int S_EW;//東―西軸方向のどちらに向かって進むのか
@@ -47,4 +47,20 @@ public class Velocity {
 
 		return 0;
 	}
+}
+
+static class Velocity{
+
+	int S_Vr;//垂直方向の動き
+	double Vel;//速さ
+	double deg;//方位
+	double Vr;//垂直方向の速さ
+
+	Velocity(int S_Vr, double Vel, double deg, double Vr){
+		this.S_Vr = S_Vr;
+		this.Vel = Vel;
+		this.deg = deg;
+		this.Vr = Vr;
+	}
+
 }

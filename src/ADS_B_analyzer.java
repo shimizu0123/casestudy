@@ -20,7 +20,7 @@ public class ADS_B_analyzer<SBS_3_Data> {
 		  DF17_analyzer DF17analys =new DF17_analyzer();
 		  Callsign Call =new Callsign();
 		  Altitude Alt = new Altitude();
-		  Velocity Vel = new Velocity();
+		  Calc_Velocity Vel = new Calc_Velocity();
 		  Nic_analyzer Nic = new Nic_analyzer();
 
 		  try{
