@@ -4,9 +4,32 @@ public class longitude {
 	//String dataO ="";
 	String dataE = "1000110101000000011000100001110101011000110000111000001011010110100100001100100010101100001010000110001110100111";
 	//String dataE ="0001000000000010000000010000000000000100000100000001000010001101100011001000011001110101010101100011100101011111001001100100100010100000010000011011111000000000000000000000000000010000000000110100100101101100";
+
 	double pi =Math.PI;
 	int NZ = 15;
 
+
+	int T_even = 1;
+	int T_odd = 0;
+	double ni;
+
+
+	double Lat_CPR_E = (double)Integer.parseInt(dataE.substring(54,54+17), 2)/131072;//109;
+	double Lat_CPR_O = (double)Integer.parseInt(dataO.substring(54,54+17), 2)/131072;
+	double j= Math.floor(59.0 * Lat_CPR_E - 60.0 * Lat_CPR_O + 0.5);;
+	double DLat_E = (double)360 / (4 * NZ);
+	double DLat_O= (double)360 / (4 * (NZ - 1));
+
+	double Lat_E = DLat_E * (mod(j, 60) + Lat_CPR_E);
+	double Lat_O = DLat_O * (mod(j, 59) + Lat_CPR_O);;
+
+	double Lat;
+
+	double DLon;
+	double m;
+	double LonE = (double)Integer.parseInt(dataE.substring(71,71+17), 2) /131072;//
+	double LonO = (double)Integer.parseInt(dataO.substring(71,71+17), 2) /131072;
+	double Lon=0;
 	public String binDataE() {
 		return dataE;
 	}
@@ -19,42 +42,17 @@ public class longitude {
 		return x-y*Math.floor(x/y);
 	}
 
+	public double calc_alt() {
+		if(Lat_E >= 270) Lat_E -= 360;
+		if(Lat_O >= 270) Lat_O -= 360;
+
+		if(T_even>T_odd)Lat=Lat_E;
+		else Lat=Lat_O;
+
+		return Lat;
+	}
+
 	public double calc_longi() {
-		int T_odd;
-		int T_even;
-		double ni;
-
-
-		double Lat_CPR_E;
-		double Lat_CPR_O;
-		double Lat_E;
-		double Lat_O;
-		double DLat_E;
-		double DLat_O;
-		double DLon;
-		double m;
-		double LonE;
-		double LonO;
-		double Lon=0;
-
-
-
-		Lat_CPR_E = (double)Integer.parseInt(dataE.substring(54,54+17), 2)/131072;//109
-		Lat_CPR_O = (double)Integer.parseInt(dataO.substring(54,54+17), 2)/131072;
-
-		double j = Math.floor(59.0 * Lat_CPR_E - 60.0 * Lat_CPR_O + 0.5);
-
-		DLat_E = (double)360 / (4 * NZ);
-		DLat_O = (double)360 / (4 * (NZ - 1));
-
-		Lat_E = DLat_E * (mod(j, 60) + Lat_CPR_E);
-		Lat_O = DLat_O * (mod(j, 59) + Lat_CPR_O);
-
-		T_even = 1;
-		T_odd = 0;
-
-		LonE = (double)Integer.parseInt(dataE.substring(71,71+17), 2) /131072;//
-		LonO = (double)Integer.parseInt(dataO.substring(71,71+17), 2) /131072;
 
 		if(T_even > T_odd){
 			ni = Math.max(NL(Lat_E), 1.0);

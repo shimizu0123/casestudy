@@ -26,6 +26,16 @@ public class longitudeTest {
 
 
 	@Test
+	public void 緯度の計算() {
+		longitude sut = new longitude();
+
+		double actual	= sut.calc_alt();
+		double expected	= 52.25720214843750;
+		assertThat(actual,is(expected));
+
+	}
+
+	@Test
 	public void 経度の計算() {
 		longitude sut = new longitude();
 
@@ -34,5 +44,4 @@ public class longitudeTest {
 		assertThat(actual,is(expected));
 
 	}
-
 }
