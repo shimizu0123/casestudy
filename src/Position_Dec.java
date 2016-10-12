@@ -2,13 +2,10 @@ public class Position_Dec {
 
 	static double pi =Math.PI;
 	static int NZ = 15;
-
 	static int T_even = 1;
 	static int T_odd = 0;
 
-	public static PlanePosition calc_Position(String dataO, String dataE){
-
-
+	public static PlanePosition calc_Position( String dataE, String dataO){
 
 		double Lat_CPR_E = bin_to_dec_Lat_CPR(dataE);
 		double Lat_CPR_O = bin_to_dec_Lat_CPR(dataO);
@@ -60,8 +57,6 @@ public class Position_Dec {
 	private static double bin_to_dec_Lat_CPR(String dataE) {
 		return (double)Integer.parseInt(dataE.substring(110,110+17), 2)/131072;
 	}
-
-
 
 	static double NL(double lat) {
 		return Math.floor(2*pi/Math.acos(1-(1-Math.cos(pi/(2*NZ)))/Math.pow(Math.cos(pi/180*lat),2.0)));
