@@ -37,7 +37,6 @@ public class Data_List {
 		return toString_ModeS(bin_E);
 	}
 
-
 	@Override
 	public boolean equals(Object o){
 		return o.toString().equals(this.toString());
