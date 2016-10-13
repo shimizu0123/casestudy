@@ -51,12 +51,12 @@ public class Position_Dec {
 
 	}
 
-	private static double bin_to_dec_Lon_CPR(String dataE) {
-		return (double)Integer.parseInt(dataE.substring(127,127+17), 2) /131072;
+	private static double bin_to_dec_Lon_CPR(String data) {
+		return (double)Integer.parseInt(data.substring(127,127+17), 2) /131072;
 	}
 
-	private static double bin_to_dec_Lat_CPR(String dataE) {
-		return (double)Integer.parseInt(dataE.substring(110,110+17), 2)/131072;
+	private static double bin_to_dec_Lat_CPR(String data) {
+		return (double)Integer.parseInt(data.substring(110,110+17), 2)/131072;
 	}
 
 	static double NL(double lat) {
