@@ -1,6 +1,7 @@
+import static java.lang.Math.*;
+
 public class Position_Dec {
 
-	static double pi =Math.PI;
 	static int NZ = 15;
 	static int T_even = 1;
 	static int T_odd = 0;
@@ -10,7 +11,7 @@ public class Position_Dec {
 		double Lat_CPR_E = bin_to_dec_Lat_CPR(dataE);
 		double Lat_CPR_O = bin_to_dec_Lat_CPR(dataO);
 
-		double j= Math.floor(59.0 * Lat_CPR_E - 60.0 * Lat_CPR_O + 0.5);
+		double j= floor(59.0 * Lat_CPR_E - 60.0 * Lat_CPR_O + 0.5);
 
 		double DLat_E = (double)360 / (4 * NZ);
 		double DLat_O= (double)360 / (4 * (NZ - 1));
@@ -30,16 +31,16 @@ public class Position_Dec {
 
 		double Lon;
 		if(T_even > T_odd){
-			double ni = Math.max(NL(Lat_E), 1.0);
+			double ni = max(NL(Lat_E), 1.0);
 
 			double DLon = 360/ni;
-			double m = Math.floor(LonE*(NL(Lat_E)-1)-LonO*NL(Lat_E)+0.5);
+			double m = floor(LonE*(NL(Lat_E)-1)-LonO*NL(Lat_E)+0.5);
 			Lon = DLon*(mod(m,ni)+LonE);
 		}else{
-			double ni = Math.max(NL(Lat_O)-1, 1.0);
+			double ni = max(NL(Lat_O)-1, 1.0);
 
 			double DLon = 360/ni;
-			double m = Math.floor(LonE*(NL(Lat_O)-1)-LonO*NL(Lat_O)+0.5);
+			double m = floor(LonE*(NL(Lat_O)-1)-LonO*NL(Lat_O)+0.5);
 			Lon = DLon*(mod(m,ni)+LonO);
 		}
 		if(Lon >= 180.0){
@@ -50,29 +51,21 @@ public class Position_Dec {
 
 	}
 
-	private static double bin_to_dec_Lon_CPR(String dataE) {
-		return (double)Integer.parseInt(dataE.substring(127,127+17), 2) /131072;
+	private static double bin_to_dec_Lon_CPR(String data) {
+		return (double)Integer.parseInt(data.substring(127,127+17), 2) /131072;
 	}
 
-	private static double bin_to_dec_Lat_CPR(String dataE) {
-		return (double)Integer.parseInt(dataE.substring(110,110+17), 2)/131072;
+	private static double bin_to_dec_Lat_CPR(String data) {
+		return (double)Integer.parseInt(data.substring(110,110+17), 2)/131072;
 	}
 
 	static double NL(double lat) {
-		return Math.floor(2*pi/Math.acos(1-(1-Math.cos(pi/(2*NZ)))/Math.pow(Math.cos(pi/180*lat),2.0)));
+		return floor(2*PI/acos(1-(1-cos(PI/(2*NZ)))/pow(cos(PI/180*lat),2.0)));
 	}
 
 	static double mod(double x,double y) {
-		return x-y*Math.floor(x/y);
+		return x-y*floor(x/y);
 	}
 
-	static class PlanePosition{
-		double Lon;
-		double Lat;
-		PlanePosition(double Lon, double Lat){
-			this.Lon = Lon;
-			this.Lat = Lat;
-		}
-	}
 
 }

@@ -108,6 +108,10 @@ public class ADS_B_analyzer<SBS_3_Data> {
 		dataList.add(new Data_List(data));
 	}
 
+	public void Overwrite_Data_List(String data) {
+		dataList.set(indexOf(data), data);
+	}
+
 }
 
 
