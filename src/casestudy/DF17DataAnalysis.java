@@ -1,5 +1,8 @@
 package casestudy;
 
+/*
+ * DF17データ解析クラス
+ */
 public class DF17DataAnalysis {
 
 	AnalyticalMethod analyticalMethod = new AnalyticalMethod();
@@ -7,8 +10,7 @@ public class DF17DataAnalysis {
 	/*
 	 * TypeCcodeを解析
 	 */
-
-	public int tc_analys(String data) {
+	public static int tc_analys(String data) {
 		int tcnum;
 		tcnum = Integer.parseInt(data.substring(88,88+5), 2);
 		return tcnum;

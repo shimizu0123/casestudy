@@ -34,36 +34,33 @@ public class ADS_B_Analyst {
 					  str = String.valueOf((char)ch);
 					  String binary = Integer.toBinaryString(Integer.parseInt(str, 16));
 					  binary = String.format("%04d", Integer.parseInt(binary));
-
-
 					  sb.append(binary);
 				  }
 
 				  if (ch == 10){
 
-					data=sb.toString();
+					data = sb.toString();
 					sb.delete(0, sb.length());
 
-					if(DFnum(data) == 17){
+					if(Integer.parseInt(data.substring(56,56+5), 2) == 17){
 						System.out.println(data);
-						System.out.println("TC = "+DF17analys.tc_analys(data));
-						System.out.println("modeS_Address = " + DF17analys.modoS_analys(data));
-						tcnum=DF17analys.tc_analys(data);
+						System.out.println("TC = " + DF17DataAnalysis.tc_analys(data));
+						System.out.println("modeS_Address = " + DF17DataAnalysis.modoS_analys(data));
+						tcnum = DF17DataAnalysis.tc_analys(data);
 
 						if(tcnum >= 1 && tcnum <= 4){
-							System.out.println("Callsign = " +   AnalyticalMethod.callSign(data));
+							System.out.println("Callsign = " + AnalyticalMethod.callSign(data));
 						}
 
 						if(tcnum >= 9 && tcnum <= 18){
-							System.out.println("Altitude = " +  Alt.alt_calc(data) + "ft");
-							System.out.println("Nicnum = " + Nic.nic_analyz(data, tcnum));
+							System.out.println("Altitude = " + AnalyticalMethod.alt_calc(data) + "ft");
+							System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, tcnum));
 						}
 
 						if(tcnum == 19){
-							Vel.velocity(data);
+							AnalyticalMethod.velocity(data);
 						}
 					}
-
 
 				}
 

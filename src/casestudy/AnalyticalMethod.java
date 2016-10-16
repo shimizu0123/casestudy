@@ -139,31 +139,29 @@ public class AnalyticalMethod {
 	/*
 	 * 高度解析
 	 */
-	public class Altitude {
-		public int alt_calc(String data) {
-			int n=0;
+	public static int alt_calc(String data) {
+		int n=0;
 
-			String frontbit=data.substring(96,96+7);
-			String backbit=data.substring(103,103+4);
+		String frontbit=data.substring(96,96+7);
+		String backbit=data.substring(103,103+4);
 
-			String altbin = frontbit + backbit;
-			int unitbit = Integer.parseInt(data.substring(103,104),2);
+		String altbin = frontbit + backbit;
+		int unitbit = Integer.parseInt(data.substring(103,104),2);
 
-			if(unitbit==1)n=25;
-			if(unitbit==0)n=100;
+		if(unitbit==1)n=25;
+		if(unitbit==0)n=100;
 
-			int altitude = Integer.parseInt(altbin,2)*n-1000;
+		int altitude = Integer.parseInt(altbin,2)*n-1000;
 
 
-			return altitude;
-		}
+		return altitude;
 	}
 
 
 	/*
 	 * NIC解析
 	 */
-	public double nic_analyz(String data,int tcnum) {
+	public static double nic_analyz(String data,int tcnum) {
 		double Nicnum=0;
 
 		if(tcnum==9){
