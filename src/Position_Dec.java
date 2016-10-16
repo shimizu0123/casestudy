@@ -1,5 +1,7 @@
 import static java.lang.Math.*;
 
+import casestudy.PlanePosition;
+
 public class Position_Dec {
 
 	static int NZ = 15;

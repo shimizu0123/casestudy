@@ -1,10 +1,12 @@
 import org.junit.Test;
 
+import casestudy.DF17DataAnalysis;
+
 public class Test_DF17_analyzer {
 
 	@Test
 	public void test() {
-		DF17_analyzer test =new DF17_analyzer();
+		DF17DataAnalysis test =new DF17DataAnalysis();
 		Altitude alt = new Altitude();
 
 		

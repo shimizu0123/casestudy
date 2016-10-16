@@ -1,3 +1,4 @@
+package casestudy;
 
 public class PlanePosition {
 	double Lon;
