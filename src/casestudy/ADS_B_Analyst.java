@@ -10,14 +10,15 @@ public class ADS_B_Analyst {
 
 	public String data;
 	public int num;
-	ArrayList<String> oddDataList = new ArrayList();
+	ArrayList<EvenData> evenDataList = new ArrayList<>();
+	ArrayList<OddData> oddDataList = new ArrayList<>();
 
 	/*
 	 * .txtから読み込み解析する
 	 * →リアルタイムで読み込み解析するように書き換える必要有！
 	 */
 	String str;
-	public String Read_Data(){
+	public String read_Data(){
 		  StringBuilder sb = new StringBuilder();
 		  DF17DataAnalysis dF17DataAnalysis =new DF17DataAnalysis();
 
@@ -48,39 +49,74 @@ public class ADS_B_Analyst {
 						System.out.println("modeS_Address = " + DF17DataAnalysis.modoS_analys(data));
 						tcnum = DF17DataAnalysis.tc_analys(data);
 
-						if(tcnum >= 1 && tcnum <= 4){
+						if(1 <= tcnum && tcnum <= 4){
 							System.out.println("Callsign = " + AnalyticalMethod.callSign(data));
-						}
-
-						if(tcnum >= 9 && tcnum <= 18){
-							System.out.println("Altitude = " + AnalyticalMethod.alt_calc(data) + "ft");
-							System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, tcnum));
 						}
 
 						if(tcnum == 19){
 							AnalyticalMethod.velocity(data);
 						}
 
-						//EVENフレームの場合
-						if((9 <= tcnum && tcnum <= 18) && data.substring(108,108+1) == "0"){
-							/*
-							 *  oddDataListを参照し、同じModeSアドレスのデータを探す
-							 * （データが有った場合）→処理を続行
-							 * （データがなかった場合）→「破棄」
-							 */
+						if(9 <= tcnum && tcnum <= 18){
+							System.out.println("Altitude = " + AnalyticalMethod.alt_calc(data) + "ft");
+							System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, tcnum));
+
+							if(Integer.parseInt(data.substring(109, 109+1), 2) == 0){
+								/*
+								 *  oddDataListを参照し、同じModeSアドレスのデータを探す
+								 * （データが有った場合）→処理を続行
+								 * （データがなかった場合）→「破棄」
+								 */
+								System.out.println("！EVENデータ格納！");
+						        EvenData evenData = new EvenData(data);
+								evenDataList.add(evenData);
+							}
+
+							if(Integer.parseInt(data.substring(109, 109+1), 2) == 1){
+								/*
+								 *  oddDataListを参照し、同じModeSアドレスのデータを探す
+								 * （データが有った場合）→処理を続行
+								 * （データがなかった場合）→「破棄」
+								 */
+								System.out.println("！ODDデータ格納！");
+						        OddData oddData = new OddData(data);
+								oddDataList.add(oddData);
+							}
 
 						}
 
-						//ODDフレームの場合
-						if((9 <= tcnum && tcnum <= 18) && data.substring(108,108+1) == "1"){
-							/*
-							 * arraylist：oddDataListにdataを格納
-							 */
-							oddDataList.add(data);
-						}
 					}
+
 				  }
+
 			  }
+
+
+			  /*
+			   * テスト用領域ここから
+			   */
+
+
+			  System.out.println("↓ここからDataList↓");
+
+			  for(EvenData data : evenDataList){
+				  System.out.println(data.getData());
+				  System.out.println(data.timeStamp);
+			  }
+
+			  for(OddData data : oddDataList){
+				  System.out.println(data.getData());
+				  System.out.println(data.timeStamp);
+			  }
+
+
+
+
+			  /*
+			   * テスト用領域ここまで
+			   */
+
+
 			  filereader.close();
 			}catch(FileNotFoundException e){
 			  System.out.println(e);
@@ -91,4 +127,56 @@ public class ADS_B_Analyst {
 		return null;
 
 	}
+
+
+	/*
+	 * 自作のクラス EvenData
+	 */
+	private static class EvenData{
+
+		private String data;
+		private long timeStamp;
+
+		EvenData(String data){
+			this.data = data;
+			this.timeStamp = System.currentTimeMillis();
+		}
+
+		public String getData(){
+			return this.data;
+		}
+		public String getModeS(){
+			return Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
+		}
+		public String getTime(){
+			return data.substring(108,108+1);
+		}
+
+	}
+
+	/*
+	 * 自作のクラス OddData
+	 */
+	private static class OddData{
+
+		private String data;
+		private long timeStamp;
+
+		OddData(String data){
+			this.data = data;
+			this.timeStamp = System.currentTimeMillis();
+		}
+
+		public String getData(){
+			return this.data;
+		}
+		public String getModeS(){
+			return Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
+		}
+		public String getTime(){
+			return data.substring(108,108+1);
+		}
+
+	}
+
 }
