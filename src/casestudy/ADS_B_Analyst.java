@@ -10,7 +10,7 @@ public class ADS_B_Analyst {
 
 	public String data;
 	public int num;
-	ArrayList oddDataList = new ArrayList();
+	ArrayList<String> oddDataList = new ArrayList();
 
 	/*
 	 * .txtから読み込み解析する
@@ -19,7 +19,7 @@ public class ADS_B_Analyst {
 	String str;
 	public String Read_Data(){
 		  StringBuilder sb = new StringBuilder();
-		  DF17DataAnalysis dF17analysis =new DF17DataAnalysis();
+		  DF17DataAnalysis dF17DataAnalysis =new DF17DataAnalysis();
 
 		  try{
 			  File file = new File("test1000.txt");
@@ -60,14 +60,28 @@ public class ADS_B_Analyst {
 						if(tcnum == 19){
 							AnalyticalMethod.velocity(data);
 						}
+
+						//EVENフレームの場合
+						if((9 <= tcnum && tcnum <= 18) && data.substring(108,108+1) == "0"){
+							/*
+							 *  oddDataListを参照し、同じModeSアドレスのデータを探す
+							 * （データが有った場合）→処理を続行
+							 * （データがなかった場合）→「破棄」
+							 */
+
+						}
+
+						//ODDフレームの場合
+						if((9 <= tcnum && tcnum <= 18) && data.substring(108,108+1) == "1"){
+							/*
+							 * arraylist：oddDataListにdataを格納
+							 */
+							oddDataList.add(data);
+						}
 					}
-
-				}
-
+				  }
 			  }
-
 			  filereader.close();
-
 			}catch(FileNotFoundException e){
 			  System.out.println(e);
 			}catch(IOException e){
