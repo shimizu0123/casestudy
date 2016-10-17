@@ -48,42 +48,35 @@ public class ADS_B_Analyst {
 					sb.delete(0, sb.length());
 
 					if(Integer.parseInt(data.substring(56,56+5), 2) == 17){
-//						System.out.println(data);
-//						System.out.println("TC = " + DF17DataAnalysis.tc_analys(data));
-//						System.out.println("modeS_Address = " + DF17DataAnalysis.modoS_analys(data));
+						System.out.println(data);
+						System.out.println("TC = " + DF17DataAnalysis.tc_analys(data));
+						System.out.println("modeS_Address = " + DF17DataAnalysis.modoS_analys(data));
 						tcnum = DF17DataAnalysis.tc_analys(data);
 
 						if(1 <= tcnum && tcnum <= 4){
-//							System.out.println("Callsign = " + AnalyticalMethod.callSign(data));
+							System.out.println("Callsign = " + AnalyticalMethod.callSign(data));
 						}
 
 						if(tcnum == 19){
-//							AnalyticalMethod.velocity(data);
+							AnalyticalMethod.velocity(data);
 						}
 
 						if(9 <= tcnum && tcnum <= 18){
-//							System.out.println("Altitude = " + AnalyticalMethod.alt_calc(data) + "ft");
-//							System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, tcnum));
+							System.out.println("Altitude = " + AnalyticalMethod.alt_calc(data) + "ft");
+							System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, tcnum));
 
 							if(Integer.parseInt(data.substring(109, 109+1), 2) == 0){
-								/*
-								 *  oddDataListを参照し、同じModeSアドレスのデータを探す
-								 * （データが有った場合）→処理を続行
-								 * （データがなかった場合）→「破棄」
-								 */
 
 								//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 								for(Data oddData : oddDataList){
-									if((DF17DataAnalysis.modoS_analys(data) == oddData.getModeS()) && (data.substring(108,108+1) == oddData.getTime())){
-											System.out.println("緯度経度計算実行");
+									if((DF17DataAnalysis.modoS_analys(data) == oddData.getModeS()) && data.substring(108,108+1).equals(oddData.getTime())){
 											dataO = oddData.getData();
 											AnalyticalMethod.calc_Position(data, dataO);
-//											break;
+											break;
 									}
 								}
 
 								//ArrayListへ追加
-								System.out.println("！EVENデータ格納！");
 							    Data evenData = new Data(data);
 								evenDataList.add(evenData);
 
@@ -92,17 +85,10 @@ public class ADS_B_Analyst {
 							}
 
 							if(Integer.parseInt(data.substring(109, 109+1), 2) == 1){
-								/*
-								 *  oddDataListを参照し、同じModeSアドレスのデータを探す
-								 * （データが有った場合）→処理を続行
-								 * （データがなかった場合）→「破棄」
-								 */
 
 								//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 								for(Data evenData : evenDataList){
-									System.out.println(DF17DataAnalysis.modoS_analys(data) + " " + evenData.getModeS());
-									if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) /*&& (data.substring(108,108+1) == evenData.getTime())*/){
-											System.out.println("緯度経度計算実行");
+									if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) && data.substring(108,108+1).equals(evenData.getTime())){
 											dataE = evenData.getData();
 											AnalyticalMethod.calc_Position(dataE, data);
 											break;
@@ -110,7 +96,6 @@ public class ADS_B_Analyst {
 								}
 
 								//ArrayListへ追加
-								System.out.println("！ODDデータ格納！");
 						        Data oddData = new Data(data);
 								oddDataList.add(oddData);
 
@@ -126,31 +111,8 @@ public class ADS_B_Analyst {
 
 			  }
 
-
-//			  /*
-//			   * テスト用領域ここから
-//			   */
-//
-//
-//			  System.out.println("↓ここからDataList↓");
-//
-//			  for(Data data : evenDataList){
-//				  System.out.println(data.getData());
-//				  System.out.println(data.getTimeStamp());
-//			  }
-//
-//			  for(Data data : oddDataList){
-//				  System.out.println(data.getData());
-//				  System.out.println(data.getTimeStamp());
-//			  }
-//
-//
-//			  /*
-//			   * テスト用領域ここまで
-//			   */
-
-
 			  filereader.close();
+
 			}catch(FileNotFoundException e){
 			  System.out.println(e);
 			}catch(IOException e){
