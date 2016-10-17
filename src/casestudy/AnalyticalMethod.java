@@ -90,7 +90,7 @@ public class AnalyticalMethod {
 	static int T_even = 1;
 	static int T_odd = 0;
 
-	public static PlanePosition calc_Position( String dataE, String dataO){
+	public static PlanePosition calc_Position(String dataE, String dataO){
 
 		double Lat_CPR_E = bin_to_dec_Lat_CPR(dataE);
 		double Lat_CPR_O = bin_to_dec_Lat_CPR(dataO);
@@ -130,6 +130,17 @@ public class AnalyticalMethod {
 		if(Lon >= 180.0){
 			Lon = Lon - 360;
 		}
+
+		/*
+		 * テスト用ここから
+		 */
+
+		System.out.println("Lon = " + Lon + ", Lat = " + Lat);
+
+		/*
+		 * テスト用ここまで
+		 */
+
 
 		return  new PlanePosition(Lon, Lat);
 
