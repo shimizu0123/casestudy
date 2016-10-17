@@ -69,7 +69,7 @@ public class ADS_B_Analyst {
 
 								//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 								for(Data oddData : oddDataList){
-									if((DF17DataAnalysis.modoS_analys(data) == oddData.getModeS()) && data.substring(108,108+1).equals(oddData.getTime())){
+									if((DF17DataAnalysis.modoS_analys(data) == oddData.getModeS()) && data.substring(108, 108+1).equals(oddData.getTime())){
 											dataO = oddData.getData();
 											AnalyticalMethod.calc_Position(data, dataO);
 											break;
@@ -79,7 +79,6 @@ public class ADS_B_Analyst {
 								//ArrayListへ追加
 							    Data evenData = new Data(data);
 								evenDataList.add(evenData);
-
 								//タイムスタンプの新しい順にソート
 								Collections.sort(evenDataList, new DataListComparator());
 							}
@@ -88,7 +87,7 @@ public class ADS_B_Analyst {
 
 								//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 								for(Data evenData : evenDataList){
-									if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) && data.substring(108,108+1).equals(evenData.getTime())){
+									if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) && data.substring(108, 108+1).equals(evenData.getTime())){
 											dataE = evenData.getData();
 											AnalyticalMethod.calc_Position(dataE, data);
 											break;
@@ -98,7 +97,6 @@ public class ADS_B_Analyst {
 								//ArrayListへ追加
 						        Data oddData = new Data(data);
 								oddDataList.add(oddData);
-
 								//タイムスタンプの新しい順にソート
 								Collections.sort(oddDataList, new DataListComparator());
 							}
