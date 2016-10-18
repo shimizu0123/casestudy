@@ -5,8 +5,6 @@ package casestudy;
  */
 public class DF17DataAnalysis {
 
-	AnalyticalMethod analyticalMethod = new AnalyticalMethod();
-
 	/*
 	 * TypeCcodeを解析
 	 */
