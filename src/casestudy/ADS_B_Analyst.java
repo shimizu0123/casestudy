@@ -72,7 +72,8 @@ public class ADS_B_Analyst {
 								for(Data oddData : oddDataList){
 									if(DF17DataAnalysis.modoS_analys(data).equals(oddData.getModeS()) && data.substring(108, 108+1).equals(oddData.getTime())){
 											dataO = oddData.getData();
-											AnalyticalMethod.calc_Position(data, dataO);
+											//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
+											AnalyticalMethod.calc_Position(data, dataO, 1, 0);
 											break;
 									}
 								}
@@ -91,7 +92,8 @@ public class ADS_B_Analyst {
 								for(Data evenData : evenDataList){
 									if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) && data.substring(108, 108+1).equals(evenData.getTime())){
 											dataE = evenData.getData();
-											AnalyticalMethod.calc_Position(dataE, data);
+											//dataEよりdataの方が新しいデータなので、タイムスタンプを0,1とする
+											AnalyticalMethod.calc_Position(dataE, data, 0, 1);
 											break;
 									}
 								}

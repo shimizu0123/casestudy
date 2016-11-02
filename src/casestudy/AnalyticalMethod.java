@@ -87,13 +87,15 @@ public class AnalyticalMethod {
 	 * 位置解析
 	 */
 	static int NZ = 15;
-	static int T_even = 1;
-	static int T_odd = 0;
 
-	public static PlanePosition calc_Position(String dataE, String dataO){
+
+	public static PlanePosition calc_Position(String dataE, String dataO, int t_even, int t_odd){
 
 		double Lat_CPR_E = bin_to_dec_Lat_CPR(dataE);
 		double Lat_CPR_O = bin_to_dec_Lat_CPR(dataO);
+
+		int t_Even = t_even;
+		int t_Odd = t_odd;
 
 		double j= floor(59.0 * Lat_CPR_E - 60.0 * Lat_CPR_O + 0.5);
 
@@ -110,11 +112,11 @@ public class AnalyticalMethod {
 		if(Lat_O >= 270) Lat_O -= 360;
 
 		double Lat;
-		if(T_even>T_odd) Lat = Lat_E;
+		if(t_Even > t_Odd) Lat = Lat_E;
 		else Lat = Lat_O;
 
 		double Lon;
-		if(T_even > T_odd){
+		if(t_Even > t_Odd){
 			double ni = max(NL(Lat_E), 1.0);
 
 			double DLon = 360/ni;
