@@ -63,7 +63,10 @@ public class AnalyticalMethod {
 		Vel = Math.sqrt(Math.pow(V_EW,2.0) + Math.pow(V_NS, 2.0));
 
 		deg = Math.atan(V_EW/V_NS) * 360.0 / (2 * Math.PI );
-
+		if(deg <= 0){
+			deg += 360;
+		}
+		
 		System.out.println("Velocity = "+ Vel + "kn");
 		System.out.println("deg = "+ deg + "deg");
 
