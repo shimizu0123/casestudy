@@ -103,13 +103,9 @@ public class ADS_B_Analyst {
 								Collections.sort(oddDataList, new DataListComparator());
 
 							}
-
 						}
-
 					}
-
 				  }
-
 			  }
 
 			  filereader.close();
@@ -121,7 +117,6 @@ public class ADS_B_Analyst {
 			}
 
 		return null;
-
 	}
 
 }
