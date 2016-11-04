@@ -36,6 +36,7 @@ public class ADS_B_Analyst {
 					  sb.append(binary);
 				  }
 
+				  //改行されるとsbをdataに入れて、リセット
 				  if (ch == 10){
 					data = sb.toString();
 					sb.delete(0, sb.length());

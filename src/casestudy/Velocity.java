@@ -14,4 +14,36 @@ public class Velocity {
 		this.Vr = Vr;
 	}
 
+	public int getS_Vr() {
+		return S_Vr;
+	}
+
+	public void setS_Vr(int s_Vr) {
+		S_Vr = s_Vr;
+	}
+
+	public double getVel() {
+		return Vel;
+	}
+
+	public void setVel(double vel) {
+		Vel = vel;
+	}
+
+	public double getDeg() {
+		return deg;
+	}
+
+	public void setDeg(double deg) {
+		this.deg = deg;
+	}
+
+	public double getVr() {
+		return Vr;
+	}
+
+	public void setVr(double vr) {
+		Vr = vr;
+	}
+
 }
