@@ -56,14 +56,14 @@ public class SensorAccessObject {
 	public String readSensor(){
 		StringBuilder sb = new StringBuilder();
 		String hex2 = null;
-		String hex=null;
+		String hex = null;
 		try{
 
             // 読み込み用バイト配列
             byte[] buf = new byte[1024];
             // 入力ストリームからの読み込み（ファイルの読み込み）
             int len = inBynary.read(buf);
-        
+
             // 読み込んだデータを16進形式で表示
 
 	       	for ( int i = 0; i < len; i++ ) {
@@ -73,7 +73,6 @@ public class SensorAccessObject {
 
 	       	}
 	       	hex2 = sb.toString();
-	       	System.out.println("hex2 = " + hex2);
 
 		} catch (UnknownHostException e) {
             System.err.println("Trying to connect to unknown host: " + e);
