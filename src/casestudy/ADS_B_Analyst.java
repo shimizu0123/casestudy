@@ -2,16 +2,19 @@ package casestudy;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * ADSBからのデータを解析
+ */
 public class ADS_B_Analyst {
 
-	String data;
-	static String dataE;
-	static String dataO;
-	static ArrayList<Data> evenDataList = new ArrayList<Data>();
-	static ArrayList<Data> oddDataList = new ArrayList<Data>();
-
 	public static String analyzeData(String data){
+		data = HexToBinary.hexToBinary(data);
+
+		String dataEven;
+		String dataOdd;
+		ArrayList<Data> evenDataList = new ArrayList<Data>();
+		ArrayList<Data> oddDataList = new ArrayList<Data>();
+
 		int dfNum = Integer.parseInt(data.substring(56,56+5), 2);
 		if(dfNum == 17){
 			System.out.println(data);
@@ -39,9 +42,9 @@ public class ADS_B_Analyst {
 					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 					for(Data oddData : oddDataList){
 						if(DF17DataAnalysis.modoS_analys(data).equals(oddData.getModeS()) && data.substring(108, 108+1).equals(oddData.getTime())){
-								dataO = oddData.getData();
+								dataOdd = oddData.getData();
 								//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
-								AnalyticalMethod.calc_Position(data, dataO, 1, 0);
+								AnalyticalMethod.calc_Position(data, dataOdd, 1, 0);
 								break;
 						}
 					}
@@ -57,9 +60,9 @@ public class ADS_B_Analyst {
 					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 					for(Data evenData : evenDataList){
 						if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) && data.substring(108, 108+1).equals(evenData.getTime())){
-								dataE = evenData.getData();
+								dataEven = evenData.getData();
 								//dataEよりdataの方が新しいデータなので、タイムスタンプを0,1とする
-								AnalyticalMethod.calc_Position(dataE, data, 0, 1);
+								AnalyticalMethod.calc_Position(dataEven, data, 0, 1);
 								break;
 						}
 					}
