@@ -16,10 +16,10 @@ public class MainTest {
 		/*
 		 * 100行分のデータを受信、解析する
 		 */
-		for(int i = 0;i < 1000; i++){
+		for(int i = 0;i < 1000;){
 			String hex = testSOA.readSensor();
 			StringBuilder sb = new StringBuilder();
-			System.out.println("*** hexの長さ ***" + hex.length());
+			//System.out.println("*** hexの長さ ***" + hex.length());
 			if(hex.length() >= 75){
 				for(int j = 0; j < hex.length(); j++){
 					int ch = hex.charAt(j);
@@ -35,8 +35,6 @@ public class MainTest {
 
 				System.out.println("受信データ(hex)");
 				System.out.println(hex);
-				System.out.println("受信データ(bin)");
-				System.out.println(data);
 
 				/*
 				 * ADS_B_Analystで解析
