@@ -7,13 +7,15 @@ import java.util.Collections;
  */
 public class ADS_B_Analyst {
 
+	static ArrayList<Data> evenDataList = new ArrayList<Data>();
+	static ArrayList<Data> oddDataList = new ArrayList<Data>();
+
 	public static String analyzeData(String data){
 		data = HexToBinary.hexToBinary(data);
 
 		String dataEven;
 		String dataOdd;
-		ArrayList<Data> evenDataList = new ArrayList<Data>();
-		ArrayList<Data> oddDataList = new ArrayList<Data>();
+
 
 		int dfNum = Integer.parseInt(data.substring(56,56+5), 2);
 		if(dfNum == 17){
