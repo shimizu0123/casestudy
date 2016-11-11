@@ -3,7 +3,7 @@ package casestudy;
 /*
  * DF17データ解析クラス
  */
-public class DF17DataAnalysis {
+public class ADS_B_Analyzer {
 
 	/*
 	 * TypeCcodeを解析
