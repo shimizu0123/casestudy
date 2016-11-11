@@ -12,7 +12,7 @@ public class ADS_B_AnalystTest {
 
 
 		String actual = ADS_B_Analyst.analyzeData(TestDataRead.fileReadLine(22));
-		String expected = "";
+		String expected = null;
 
 		assertThat(actual,is(expected));
 
