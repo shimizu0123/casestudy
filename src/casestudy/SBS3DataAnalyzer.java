@@ -31,7 +31,7 @@ public class SBS3DataAnalyzer {
 				if(judgeEven(rawData)){
 					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 					for(Data oddData : oddDataList){
-						if(ADS_B_Analyzer.modoS_analys(rawData).equals(oddData.getModeS()) && rawData.substring(108, 108+1).equals(oddData.getTime())){
+						if(oddData.timeModeSEquals(rawData)){
 								dataOdd = oddData.getData();
 								//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
 								AnalyticalMethod.calc_Position(rawData, dataOdd, 1, 0);
@@ -48,7 +48,7 @@ public class SBS3DataAnalyzer {
 				if(judgeOdd(rawData)){
 					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 					for(Data evenData : evenDataList){
-						if(ADS_B_Analyzer.modoS_analys(rawData).equals(evenData.getModeS()) && rawData.substring(108, 108+1).equals(evenData.getTime())){
+						if(evenData.timeModeSEquals(rawData)){
 								dataEven = evenData.getData();
 								//dataEよりdataの方が新しいデータなので、タイムスタンプを0,1とする
 								AnalyticalMethod.calc_Position(dataEven, rawData, 0, 1);
