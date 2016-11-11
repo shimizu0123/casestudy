@@ -5,8 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * テストデータ読み取り用クラス
+ * @author anque
+ *
+ */
 public class TestDataRead {
-
+	/**
+	 * 対象テストデータから指定した行を読み出す
+	 * @param filePath	対象ファイルのパス(省略可：省略時はtest1000.txt)
+	 * @param lineNo	対象行(1行目～)
+	 * @return	テストデータの指定した行の文字列
+	 */
 	public static String fileReadLine(String filePath,int lineNo) {
 		StringBuffer sb = new StringBuffer();
 		FileReader fr = null;
