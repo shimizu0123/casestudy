@@ -174,58 +174,59 @@ public class AnalyticalMethod {
 		return altitude;
 	}
 
-
-	/*
-	 * NIC解析
+	/**
+	 * nic解析
+	 * @param data
+	 * @param tcnum
+	 * @return
 	 */
 	public static double nic_analyz(String data,int tcnum) {
 		double Nicnum=0;
 
-		if(tcnum==9){
+		switch(tcnum){
+		case 9:
 			Nicnum=7.5;
-		}
-		if(tcnum==10){
+			break;
+		case 10:
 			Nicnum=25;
-		}
-		if(tcnum==11){
+			break;
+		case 11:
 			if(Integer.parseInt(data.substring(95,95+1),2) == 1){
 				Nicnum=74;
 			}
 			if(Integer.parseInt(data.substring(95,95+1),2) == 0){
 				Nicnum=185.2;
 			}
-		}
-		if(tcnum==12){
+			break;
+		case 12:
 			Nicnum=185.2*2;
-		}
-		if(tcnum==13){
+			break;
+		case 13:
 			if(Integer.parseInt(data.substring(95,95+1),2) == 1){
 					Nicnum=185.2*3;
-			}
-			if(Integer.parseInt(data.substring(95,95+1),2) == 0){
+			}else if(Integer.parseInt(data.substring(95,95+1),2) == 0){
 				Nicnum=185.2*5;
 			}
-		}
-		if(tcnum==14){
+			break;
+		case 14:
 			Nicnum=1852;
-		}
-		if(tcnum==15){
+			break;
+		case 15:
 			Nicnum=1852*2;
-		}
-		if(tcnum==16){
+			break;
+		case 16:
 			if(Integer.parseInt(data.substring(95,95+1),2) == 1){
 				Nicnum=1852*4;
 			}
 			if(Integer.parseInt(data.substring(95,95+1),2) == 0){
 				Nicnum=1852*8;
 			}
-		}
-		if(tcnum==17){
+			break;
+		case 17:
 			Nicnum=1852*20;
-		}
-		if(tcnum==18){
+			break;
+		case 18:
 			Nicnum=2852*2;
-
 		}
 		return Nicnum;
 	}
