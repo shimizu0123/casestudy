@@ -20,7 +20,7 @@ public class MainTest {
 			String hex = testSOA.readSensor();
 			if(hex.length() >= 75){
 
-				ADS_B_Analyst.analyzeData(hex);
+				SBS3DataAnalyst.analyzeData(hex);
 			}
 		}
 
