@@ -14,58 +14,60 @@ public class SBS3DataAnalyzer {
 	public static String analyzeData(String rawData){
 		rawData = HexToBinary.hexToBinary(rawData);
 
-		String dataEven;
-		String dataOdd;
-
 		if(judgedADS_B_Data(rawData)){
 			int typeCode = ADS_B_Analyzer.tc_analys(rawData);
-			printRawData_TypeCode_modeSAddress(rawData, typeCode);
+			addStringRawDataAndTypeCodeAndModeSAndAddress(rawData, typeCode);
 
 			if(1 <= typeCode && typeCode <= 4){
-				printCallSign(rawData);
+				addStringCallSign(rawData);
 			}else if(typeCode == 19){
 				AnalyticalMethod.velocity(rawData);
 			}else if(9 <= typeCode && typeCode <= 18){
-				print_Attitude_Nicnum(rawData, typeCode);
+				addStringAttitudeAndNicnum(rawData, typeCode);
 
-				if(judgeEven(rawData)){
-					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
-					for(Data oddData : oddDataList){
-						if(oddData.timeModeSEquals(rawData)){
-								dataOdd = oddData.getData();
-								//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
-								AnalyticalMethod.calc_Position(rawData, dataOdd, 1, 0);
-								break;
-						}
-					}
-					//ArrayListへ追加
-				    Data evenData = new Data(rawData);
-					evenDataList.add(evenData);
-					//タイムスタンプの新しい順にソート
-					Collections.sort(evenDataList, new DataListComparator());
-				}
+				findSamePairData(rawData);
 
-				if(judgeOdd(rawData)){
-					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
-					for(Data evenData : evenDataList){
-						if(evenData.timeModeSEquals(rawData)){
-								dataEven = evenData.getData();
-								//dataEよりdataの方が新しいデータなので、タイムスタンプを0,1とする
-								AnalyticalMethod.calc_Position(dataEven, rawData, 0, 1);
-								break;
-						}
-					}
-
-					//ArrayListへ追加
-			        Data oddData = new Data(rawData);
-					oddDataList.add(oddData);
-					//タイムスタンプの新しい順にソート
-					Collections.sort(oddDataList, new DataListComparator());
-				}
 			}
 		}
 		System.out.print(sb.toString());
 		return null;
+	}
+
+	private static void findSamePairData(String rawData) {
+		String dataOdd;
+		int timeStamp1;
+		int timeStamp2;
+		ArrayList<Data> dataList1;
+		ArrayList<Data> dataList2;
+
+		if(judgeEven(rawData)){
+			timeStamp1 = 1;
+			timeStamp2 = 0;
+			dataList1 = oddDataList;
+			dataList2 = evenDataList;
+		}else{
+			timeStamp1 = 0;
+			timeStamp2 = 1;
+			dataList1 = evenDataList;
+			dataList2 = oddDataList;
+		}
+		for(Data oddData : dataList1){
+			if(oddData.timeModeSEquals(rawData)){
+					dataOdd = oddData.getData();
+					//dataOよりdataの方が新しいデータなので、タイムスタンプを変更する
+					AnalyticalMethod.calc_Position(rawData, dataOdd, timeStamp1, timeStamp2);
+					break;
+			}
+		}
+			listAddRawData(rawData,dataList2);
+		}
+
+	private static void listAddRawData(String rawData,ArrayList<Data> dataList) {
+		//ArrayListへ追加
+		Data data = new Data(rawData);
+		dataList.add(data);
+		//タイムスタンプの新しい順にソート
+		Collections.sort(dataList, new DataListComparator());
 	}
 
 	private static boolean judgeOdd(String rawData) {
@@ -73,10 +75,10 @@ public class SBS3DataAnalyzer {
 	}
 
 	private static boolean judgeEven(String rawData) {
-		return Integer.parseInt(rawData.substring(109, 109+1), 2) == 0;
+		return !(judgeOdd(rawData));
 	}
 
-	private static void print_Attitude_Nicnum(String rawData, int typeCode) {
+	private static void addStringAttitudeAndNicnum(String rawData, int typeCode) {
 		sb.append("Altitude = ");
 		sb.append(AnalyticalMethod.alt_calc(rawData));
 		sb.append("ft");
@@ -87,13 +89,13 @@ public class SBS3DataAnalyzer {
 		sb.append('\n');
 	}
 
-	private static void printCallSign(String rawData) {
+	private static void addStringCallSign(String rawData) {
 		sb.append("Callsign = ");
 		sb.append(AnalyticalMethod.callSign(rawData));
 		sb.append('\n');
 	}
 
-	private static void printRawData_TypeCode_modeSAddress(String rawData,int typeCode) {
+	private static void addStringRawDataAndTypeCodeAndModeSAndAddress(String rawData,int typeCode) {
 		sb.append(rawData);
 		sb.append('\n');
 		sb.append("TC = ");
@@ -105,10 +107,10 @@ public class SBS3DataAnalyzer {
 	}
 
 	private static boolean judgedADS_B_Data(String rawData) {
-		return createDownLinkFormatNo(rawData) == 17;
+		return downLinkFormatNo(rawData) == 17;
 	}
 
-	private static int createDownLinkFormatNo(String data) {
+	private static int downLinkFormatNo(String data) {
 		return Integer.parseInt(data.substring(56,56+5), 2);
 	}
 }
