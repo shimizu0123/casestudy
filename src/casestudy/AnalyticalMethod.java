@@ -54,10 +54,10 @@ public class AnalyticalMethod {
 
 		S_NS = Integer.parseInt(data.substring(112,112+1), 2);
 		if(S_NS==1){
-			V_NS = (-1) * (Integer.parseInt(data.substring(102,102+10), 2) - 1);
+			V_NS = (-1) * (Integer.parseInt(data.substring(113,113+10), 2) - 1);
 		}
 		if(S_NS==0){
-			V_NS = Integer.parseInt(data.substring(102,102+10), 2) - 1;
+			V_NS = Integer.parseInt(data.substring(113,113+10), 2) - 1;
 		}
 
 		Vel = Math.sqrt(Math.pow(V_EW,2.0) + Math.pow(V_NS, 2.0));
@@ -120,25 +120,28 @@ public class AnalyticalMethod {
 		else Lat = Lat_O;
 
 		double Lon;
+		int Alt;
+
 		if(t_Even > t_Odd){
 			double ni = max(NL(Lat_E), 1.0);
-
 			double DLon = 360/ni;
 			double m = floor(LonE*(NL(Lat_E)-1)-LonO*NL(Lat_E)+0.5);
 			Lon = DLon*(mod(m,ni)+LonE);
+			Alt = alt_calc(dataE);
+
 		}else{
 			double ni = max(NL(Lat_O)-1, 1.0);
 
 			double DLon = 360/ni;
 			double m = floor(LonE*(NL(Lat_O)-1)-LonO*NL(Lat_O)+0.5);
 			Lon = DLon*(mod(m,ni)+LonO);
+			Alt = alt_calc(dataO);
 		}
 		if(Lon >= 180.0){
 			Lon = Lon - 360;
 		}
 
-
-		return  new PlanePosition(Lat,Lon);
+		return  new PlanePosition(Lat, Lon, Alt);
 
 	}
 

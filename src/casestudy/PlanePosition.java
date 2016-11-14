@@ -2,12 +2,23 @@ package casestudy;
 
 public class PlanePosition {
 
+
 	private double lat_;
 	private double lon_;
+	private double alt_;
 
-	PlanePosition(double lat, double lon){
+	PlanePosition(double lat, double lon, double alt){
 		this.lat_ = lat;
 		this.lon_ = lon;
+		this.alt_ = alt;
+	}
+
+	public double getLat() {
+		return lat_;
+	}
+
+	public void setLat(double lat) {
+		lat_ = lat;
 	}
 
 	public double getLon() {
@@ -18,12 +29,12 @@ public class PlanePosition {
 		lon_ = lon;
 	}
 
-	public double getLat() {
-		return lat_;
+	public double getAlt_() {
+		return alt_;
 	}
 
-	public void setLat(double lat) {
-		lat_ = lat;
+	public void setAlt_(double alt_) {
+		this.alt_ = alt_;
 	}
 
 	@Override
@@ -35,6 +46,5 @@ public class PlanePosition {
 		sb.append(this.lon_);
 		return sb.toString();
 	}
-
 
 }
