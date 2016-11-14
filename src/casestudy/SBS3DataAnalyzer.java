@@ -14,9 +14,6 @@ public class SBS3DataAnalyzer {
 	public static String analyzeData(String rawData){
 		rawData = HexToBinary.hexToBinary(rawData);
 
-		String dataEven;
-		String dataOdd;
-
 		if(judgedADS_B_Data(rawData)){
 			int typeCode = ADS_B_Analyzer.tc_analys(rawData);
 			printRawData_TypeCode_modeSAddress(rawData, typeCode);
@@ -28,44 +25,39 @@ public class SBS3DataAnalyzer {
 			}else if(9 <= typeCode && typeCode <= 18){
 				print_Attitude_Nicnum(rawData, typeCode);
 
-				if(judgeEven(rawData)){
-					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
-					for(Data oddData : oddDataList){
-						if(oddData.timeModeSEquals(rawData)){
-								dataOdd = oddData.getData();
-								//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
-								AnalyticalMethod.calc_Position(rawData, dataOdd, 1, 0);
-								break;
-						}
-					}
-					//ArrayListへ追加
-				    Data evenData = new Data(rawData);
-					evenDataList.add(evenData);
-					//タイムスタンプの新しい順にソート
-					Collections.sort(evenDataList, new DataListComparator());
-				}
+				pairDataMatch(rawData);
 
-				if(judgeOdd(rawData)){
-					//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
-					for(Data evenData : evenDataList){
-						if(evenData.timeModeSEquals(rawData)){
-								dataEven = evenData.getData();
-								//dataEよりdataの方が新しいデータなので、タイムスタンプを0,1とする
-								AnalyticalMethod.calc_Position(dataEven, rawData, 0, 1);
-								break;
-						}
-					}
-
-					//ArrayListへ追加
-			        Data oddData = new Data(rawData);
-					oddDataList.add(oddData);
-					//タイムスタンプの新しい順にソート
-					Collections.sort(oddDataList, new DataListComparator());
-				}
 			}
 		}
 		System.out.print(sb.toString());
+		sb = new StringBuilder();
 		return null;
+	}
+
+	private static void pairDataMatch(String rawData) {
+		String dataOdd;
+		ArrayList<Data>dataList1 = evenDataList;
+		ArrayList<Data>dataList2 = oddDataList;
+
+		if(judgeEven(rawData)){
+			dataList1 = oddDataList;
+			dataList2 = evenDataList;
+		}
+		//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
+		for(Data pairData : dataList1){
+			if(pairData.timeModeSEquals(rawData)){
+					dataOdd = pairData.getData();
+					//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
+					sb.append(AnalyticalMethod.calc_Position(rawData, dataOdd, 1, 0));
+					sb.append("\n");
+					break;
+			}
+		}
+		//ArrayListへ追加
+	    dataList2.add(new Data(rawData));
+		//タイムスタンプの新しい順にソート
+		Collections.sort(dataList2, new DataListComparator());
+
 	}
 
 	private static boolean judgeOdd(String rawData) {
@@ -73,7 +65,7 @@ public class SBS3DataAnalyzer {
 	}
 
 	private static boolean judgeEven(String rawData) {
-		return Integer.parseInt(rawData.substring(109, 109+1), 2) == 0;
+		return !(judgeOdd(rawData));
 	}
 
 	private static void print_Attitude_Nicnum(String rawData, int typeCode) {

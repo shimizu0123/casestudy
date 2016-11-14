@@ -137,18 +137,8 @@ public class AnalyticalMethod {
 			Lon = Lon - 360;
 		}
 
-		/*
-		 * テスト用ここから
-		 */
 
-		System.out.println("Lon = " + Lon + ", Lat = " + Lat);
-
-		/*
-		 * テスト用ここまで
-		 */
-
-
-		return  new PlanePosition(Lon, Lat);
+		return  new PlanePosition(Lat,Lon);
 
 	}
 
