@@ -16,21 +16,21 @@ public class Data {
 		return this.timeStamp;
 	}
 
+
+	public boolean timeAndModeSEquals(String rawData){
+		return (this.timeEquals(rawData) && this.modeSEquals(rawData));
+	}
+	private boolean timeEquals(String rawData){
+		return rawData.substring(108, 108+1).equals(this.getTime());
+	}
+	private boolean modeSEquals(String rawData){
+		return ADS_B_Analyzer.modoS_analys(rawData).equals(this.getModeS());
+	}
 	public String getModeS(){
 		return Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
 	}
 	public String getTime(){
 		return data.substring(108,108+1);
 	}
-	public boolean timeModeSEquals(String rawData){
-		return (this.timeEquals(rawData) && this.modeSEquals(rawData));
-	}
-	private boolean timeEquals(String rawData){
-		return data.substring(108, 108+1).equals(this.getTime());
-	}
-	private boolean modeSEquals(String rawData){
-		return ADS_B_Analyzer.modoS_analys(data).equals(this.getModeS());
-	}
-
 
 }

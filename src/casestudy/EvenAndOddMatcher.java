@@ -35,29 +35,30 @@ public class EvenAndOddMatcher {
 	}
 
 	private static void pairDataMatch(String rawData) {
-		String dataOdd;
-		ArrayList<Data>dataList1 = evenDataList;
-		ArrayList<Data>dataList2 = oddDataList;
+		String listData;
+		ArrayList<Data>dataList;
+		if(judgeEven(rawData)) dataList = oddDataList;
+		else dataList = evenDataList;
 
-		if(judgeEven(rawData)){
-			dataList1 = oddDataList;
-			dataList2 = evenDataList;
-		}
 		//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
-		for(Data pairData : dataList1){
-			if(pairData.timeModeSEquals(rawData)){
-					dataOdd = pairData.getData();
-					//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
-					sb.append(AnalyticalMethod.calc_Position(rawData, dataOdd, 1, 0));
-					sb.append("\n");
-					break;
+		for(Data pairData : dataList){
+			if(pairData.timeAndModeSEquals(rawData)){
+				listData = pairData.getData();
+				if(judgeEven(rawData)) sb.append(AnalyticalMethod.calc_Position(rawData, listData, 1, 0));
+				else sb.append(AnalyticalMethod.calc_Position(listData, rawData, 0, 1));
+				sb.append("\n");
+				break;
 			}
 		}
-		//ArrayListへ追加
-	    dataList2.add(new Data(rawData));
-		//タイムスタンプの新しい順にソート
-		Collections.sort(dataList2, new DataListComparator());
 
+		//ArrayListへ追加、新しい順にソートする
+		if(judgeEven(rawData)){
+			evenDataList.add(new Data(rawData));
+			Collections.sort(evenDataList, new DataListComparator());
+		}else{
+			oddDataList.add(new Data(rawData));
+			Collections.sort(oddDataList, new DataListComparator());
+		}
 	}
 
 	private static boolean judgeOdd(String rawData) {
