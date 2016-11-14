@@ -51,14 +51,30 @@ public class EvenAndOddMatcher {
 			}
 		}
 
-		//ArrayListへ追加、新しい順にソートする
+		//ArrayListへ追加、新しい順にソートし、古いデータを削除する
+		long deleteTime = 1000 * 10;//削除のしきい値
 		if(judgeEven(rawData)){
 			evenDataList.add(new Data(rawData));
 			Collections.sort(evenDataList, new DataListComparator());
+			long now = System.currentTimeMillis();//現在時刻を取得
+			for(int i = evenDataList.size() - 1; i >= 0; i--){
+				if((now - evenDataList.get(i).getTimeStamp()) >=  deleteTime) evenDataList.remove(i);
+			}
 		}else{
 			oddDataList.add(new Data(rawData));
 			Collections.sort(oddDataList, new DataListComparator());
+			long now = System.currentTimeMillis();//現在時刻を取得
+			for(int i = oddDataList.size() - 1; i >= 0; i--){
+				if((now - oddDataList.get(i).getTimeStamp()) >=  deleteTime) oddDataList.remove(i);
+			}
 		}
+
+		/*
+		 * テスト用　データリストサイズ表示
+		 */
+		System.out.println("******evenDataListサイズ = " + evenDataList.size() + "******");
+		System.out.println("******oddDataListサイズ = " + oddDataList.size() + "******");
+
 	}
 
 	private static boolean judgeOdd(String rawData) {
