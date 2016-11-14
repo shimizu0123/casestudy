@@ -5,7 +5,7 @@ import java.util.Collections;
 /**
  * ADSBからのデータを解析
  */
-public class SBS3DataAnalyzer {
+public class EvenAndOddMatcher {
 
 	static ArrayList<Data> evenDataList = new ArrayList<Data>();
 	static ArrayList<Data> oddDataList = new ArrayList<Data>();
