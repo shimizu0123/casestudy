@@ -22,15 +22,5 @@ public class Data {
 	public String getTime(){
 		return data.substring(108,108+1);
 	}
-	public boolean timeModeSEquals(String rawData){
-		return (this.timeEquals(rawData) && this.modeSEquals(rawData));
-	}
-	private boolean timeEquals(String rawData){
-		return data.substring(108, 108+1).equals(this.getTime());
-	}
-	private boolean modeSEquals(String rawData){
-		return ADS_B_Analyzer.modoS_analys(data).equals(this.getModeS());
-	}
-
 
 }

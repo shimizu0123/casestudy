@@ -54,34 +54,33 @@ public class AnalyticalMethod {
 
 		S_NS = Integer.parseInt(data.substring(112,112+1), 2);
 		if(S_NS==1){
-			V_NS = (-1) * (Integer.parseInt(data.substring(102,102+10), 2) - 1);
+			V_NS = (-1) * (Integer.parseInt(data.substring(113,113+10), 2) - 1);
 		}
 		if(S_NS==0){
-			V_NS = Integer.parseInt(data.substring(102,102+10), 2) - 1;
+			V_NS = Integer.parseInt(data.substring(113,113+10), 2) - 1;
 		}
 
 		Vel = Math.sqrt(Math.pow(V_EW,2.0) + Math.pow(V_NS, 2.0));
 
 		deg = Math.atan(V_EW/V_NS) * 360.0 / (2 * Math.PI );
-
-		if(deg < 0){
+		if(deg <= 0){
 			deg += 360;
 		}
-
-		System.out.println("Velocity = "+ Vel + "kn");
-		System.out.println("deg = "+ deg + "deg");
+		
+//		System.out.println("Velocity = "+ Vel + "kn");
+//		System.out.println("deg = "+ deg + "deg");
 
 		Vr = Integer.parseInt(data.substring(125,125+8), 2);
 
 		S_Vr = Integer.parseInt(data.substring(124,124+1), 2);
 		if(S_Vr==1){
-			System.out.println("Down");
+//			System.out.println("Down");
 		}
 		if(S_Vr==0){
-			System.out.println("UP");
+//			System.out.println("UP");
 		}
 
-		System.out.println(Vr + "kn");
+//		System.out.println(Vr + "kn");
 
 		return new Velocity(S_Vr, Vel, deg, Vr);
 	}
@@ -137,8 +136,18 @@ public class AnalyticalMethod {
 			Lon = Lon - 360;
 		}
 
+		/*
+		 * テスト用ここから
+		 */
 
-		return  new PlanePosition(Lat,Lon);
+//		System.out.println("Lon = " + Lon + ", Lat = " + Lat);
+
+		/*
+		 * テスト用ここまで
+		 */
+
+
+		return  new PlanePosition(Lon, Lat);
 
 	}
 
@@ -164,59 +173,58 @@ public class AnalyticalMethod {
 		return altitude;
 	}
 
-	/**
-	 * nic解析
-	 * @param data
-	 * @param tcnum
-	 * @return
+
+	/*
+	 * NIC解析
 	 */
 	public static double nic_analyz(String data,int tcnum) {
 		double Nicnum=0;
 
-		switch(tcnum){
-		case 9:
+		if(tcnum==9){
 			Nicnum=7.5;
-			break;
-		case 10:
+		}
+		if(tcnum==10){
 			Nicnum=25;
-			break;
-		case 11:
+		}
+		if(tcnum==11){
 			if(Integer.parseInt(data.substring(95,95+1),2) == 1){
 				Nicnum=74;
 			}
 			if(Integer.parseInt(data.substring(95,95+1),2) == 0){
 				Nicnum=185.2;
 			}
-			break;
-		case 12:
+		}
+		if(tcnum==12){
 			Nicnum=185.2*2;
-			break;
-		case 13:
+		}
+		if(tcnum==13){
 			if(Integer.parseInt(data.substring(95,95+1),2) == 1){
 					Nicnum=185.2*3;
-			}else if(Integer.parseInt(data.substring(95,95+1),2) == 0){
+			}
+			if(Integer.parseInt(data.substring(95,95+1),2) == 0){
 				Nicnum=185.2*5;
 			}
-			break;
-		case 14:
+		}
+		if(tcnum==14){
 			Nicnum=1852;
-			break;
-		case 15:
+		}
+		if(tcnum==15){
 			Nicnum=1852*2;
-			break;
-		case 16:
+		}
+		if(tcnum==16){
 			if(Integer.parseInt(data.substring(95,95+1),2) == 1){
 				Nicnum=1852*4;
 			}
 			if(Integer.parseInt(data.substring(95,95+1),2) == 0){
 				Nicnum=1852*8;
 			}
-			break;
-		case 17:
+		}
+		if(tcnum==17){
 			Nicnum=1852*20;
-			break;
-		case 18:
+		}
+		if(tcnum==18){
 			Nicnum=2852*2;
+
 		}
 		return Nicnum;
 	}

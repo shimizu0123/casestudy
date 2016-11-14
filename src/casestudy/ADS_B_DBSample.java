@@ -1,13 +1,20 @@
-package casestudyVerText;
+package casestudy;
 
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ADS_B_Analyst {
+
+
+
+public class ADS_B_DBSample {
 
 	String data;
 	String dataE;
@@ -27,6 +34,9 @@ public class ADS_B_Analyst {
 		  try{
 			  File file = new File("test1000.txt");
 			  FileReader filereader = new FileReader(file);
+	            //出力先を作成する
+	            FileWriter fw = new FileWriter("C:\\pleiades\\workspace\\casestudy2\\test.csv", false);  //※１
+	            PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
 
 			  while((ch = filereader.read()) != -1){
 				  if((48 <= ch && ch <= 57) || (97 <= ch && ch <= 102)){
@@ -36,7 +46,6 @@ public class ADS_B_Analyst {
 					  sb.append(binary);
 				  }
 
-				  //改行されるとsbをdataに入れて、リセット
 				  if (ch == 10){
 					data = sb.toString();
 					sb.delete(0, sb.length());
@@ -46,35 +55,42 @@ public class ADS_B_Analyst {
 					 */
 					int dfNum = Integer.parseInt(data.substring(56,56+5), 2);
 					if(dfNum == 17){
-						System.out.println(data);
+//						System.out.println(data);
 
 						int typeCode = DF17DataAnalysis.tc_analys(data);
-						System.out.println("TC = " + typeCode);
+						//System.out.println("TC = " + typeCode);
 
 						String modeS = DF17DataAnalysis.modoS_analys(data);
-						System.out.println("modeS_Address = " + modeS);
 
 						if(1 <= typeCode && typeCode <= 4){
+							pw.print(modeS + ",");
 							String callSign =  AnalyticalMethod.callSign(data);
-							System.out.println("Callsign = " + callSign);
+							pw.println(callSign + ",null,null,null,null,null,null,null,null,"+DB_items.gettimestamp()+",1");
 						}
 
 						if(typeCode == 19){
-							AnalyticalMethod.velocity(data);
+							pw.print(modeS + ",null,null,null,null,");
+							pw.print(AnalyticalMethod.velocity(data).Vel+",");
+							pw.print(AnalyticalMethod.velocity(data).deg+",");
+							pw.print(AnalyticalMethod.velocity(data).S_Vr+",");
+							pw.println(AnalyticalMethod.velocity(data).Vr+",null,"+DB_items.gettimestamp()+",3");
 						}
 
 						if(9 <= typeCode && typeCode <= 18){
-							System.out.println("Altitude = " + AnalyticalMethod.alt_calc(data) + "ft");
-							System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, typeCode));
+							//System.out.println("Nicnum = " + AnalyticalMethod.nic_analyz(data, typeCode));
 
 							if(Integer.parseInt(data.substring(109, 109+1), 2) == 0){
 
 								//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 								for(Data oddData : oddDataList){
 									if(DF17DataAnalysis.modoS_analys(data).equals(oddData.getModeS()) && data.substring(108, 108+1).equals(oddData.getTime())){
-											dataO = oddData.getData();
-											//dataOよりdataの方が新しいデータなので、タイムスタンプを1,0とする
-											AnalyticalMethod.calc_Position(data, dataO, 1, 0);
+										pw.print(modeS + ",null,");
+										dataO = oddData.getData();
+										pw.print(AnalyticalMethod.calc_Position(data, dataO, 1, 0).Lat + ",");
+										pw.print(AnalyticalMethod.calc_Position(data, dataO, 1, 0).Lon + ",");
+
+										pw.println(AnalyticalMethod.alt_calc(data) + ",null,null,null,null,null,"+DB_items.gettimestamp()+",2");
+
 											break;
 									}
 								}
@@ -92,10 +108,12 @@ public class ADS_B_Analyst {
 								//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 								for(Data evenData : evenDataList){
 									if(DF17DataAnalysis.modoS_analys(data).equals(evenData.getModeS()) && data.substring(108, 108+1).equals(evenData.getTime())){
-											dataE = evenData.getData();
-											//dataEよりdataの方が新しいデータなので、タイムスタンプを0,1とする
-											AnalyticalMethod.calc_Position(dataE, data, 0, 1);
-											break;
+										pw.print(modeS + ",null,");											dataE = evenData.getData();
+										pw.print(AnalyticalMethod.calc_Position(dataE, data, 0, 1).Lat+",");
+										pw.print(AnalyticalMethod.calc_Position(dataE, data, 0, 1).Lon+",");
+										pw.println(AnalyticalMethod.alt_calc(data) + ",null,null,null,null,null,"+DB_items.gettimestamp()+",2");
+
+										break;
 									}
 								}
 
@@ -106,12 +124,23 @@ public class ADS_B_Analyst {
 								Collections.sort(oddDataList, new DataListComparator());
 
 							}
-						}
-					}
-				  }
-			  }
 
-			  filereader.close();
+						}
+
+					}
+
+				  }
+
+			  	}
+
+			  	filereader.close();
+
+	            //ファイルに書き出す
+	            pw.close();
+
+	            //終了メッセージを画面に出力する
+	            System.out.println("出力が完了しました。");
+
 
 			}catch(FileNotFoundException e){
 			  System.out.println(e);
@@ -120,6 +149,7 @@ public class ADS_B_Analyst {
 			}
 
 		return null;
+
 	}
 
 }

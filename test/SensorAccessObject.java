@@ -1,4 +1,3 @@
-package casestudyVerText;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -56,7 +55,7 @@ public class SensorAccessObject {
 	public String readSensor(){
 		StringBuilder sb = new StringBuilder();
 		String hex2 = null;
-		String hex=null;
+		String hex;
 		try{
 
             // 読み込み用バイト配列
@@ -73,7 +72,7 @@ public class SensorAccessObject {
 
 	       	}
 	       	hex2 = sb.toString();
-	       	System.out.println("hex2 = " + hex2);
+	       	System.out.println("str = "+sb);
 
 		} catch (UnknownHostException e) {
             System.err.println("Trying to connect to unknown host: " + e);
