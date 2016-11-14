@@ -2,28 +2,49 @@ package casestudy;
 
 public class PlanePosition {
 
-	private double Lon;
-	private double Lat;
 
-	PlanePosition(double Lon, double Lat){
-		this.Lon = Lon;
-		this.Lat = Lat;
-	}
+	private double lat_;
+	private double lon_;
+	private double alt_;
 
-	public double getLon() {
-		return Lon;
-	}
-
-	public void setLon(double lon) {
-		Lon = lon;
+	PlanePosition(double lat, double lon, double alt){
+		this.lat_ = lat;
+		this.lon_ = lon;
+		this.alt_ = alt;
 	}
 
 	public double getLat() {
-		return Lat;
+		return lat_;
 	}
 
 	public void setLat(double lat) {
-		Lat = lat;
+		lat_ = lat;
+	}
+
+	public double getLon() {
+		return lon_;
+	}
+
+	public void setLon(double lon) {
+		lon_ = lon;
+	}
+
+	public double getAlt_() {
+		return alt_;
+	}
+
+	public void setAlt_(double alt_) {
+		this.alt_ = alt_;
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Lat = ");
+		sb.append(lat_);
+		sb.append("	,Lon = ");
+		sb.append(this.lon_);
+		return sb.toString();
 	}
 
 }
