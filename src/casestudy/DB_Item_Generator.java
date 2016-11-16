@@ -9,8 +9,8 @@ public class DB_Item_Generator {
 		 * テスト用
 		 */
 		System.out.println("** Generated dB_Item_CallSign **");
-		System.out.println(db_Item_CallSign.getModeSAddress());
-		System.out.println(db_Item_CallSign.getCallSign());
+		System.out.println("ModeS = " + db_Item_CallSign.getModeSAddress());
+		System.out.println("CallSign = " + db_Item_CallSign.getCallSign());
 
 	}
 
@@ -21,11 +21,11 @@ public class DB_Item_Generator {
 		 * テスト用
 		 */
 		System.out.println("** Generated dB_Item_Velocity **");
-		System.out.println(db_Item_Velocity.getModeSAddress());
-		System.out.println(db_Item_Velocity.getVelocity().getS_Vr());
-		System.out.println(db_Item_Velocity.getVelocity().getVr());
-		System.out.println(db_Item_Velocity.getVelocity().getDeg());
-		System.out.println(db_Item_Velocity.getVelocity().getVel());
+		System.out.println("ModeS = " + db_Item_Velocity.getModeSAddress());
+		System.out.println("S_Vr = " + db_Item_Velocity.getVelocity().getS_Vr());
+		System.out.println("Vr = " + db_Item_Velocity.getVelocity().getVr());
+		System.out.println("Deg = " + db_Item_Velocity.getVelocity().getDeg());
+		System.out.println("Vel = " + db_Item_Velocity.getVelocity().getVel());
 
 	}
 
@@ -36,10 +36,10 @@ public class DB_Item_Generator {
 		 * テスト用
 		 */
 		System.out.println("** Generated dB_Item_PlanePosition **");
-		System.out.println(db_Item_PlanePosition.getModeSAddress());
-		System.out.println(db_Item_PlanePosition.getPlanePosition().getAlt());
-		System.out.println(db_Item_PlanePosition.getPlanePosition().getLat());
-		System.out.println(db_Item_PlanePosition.getPlanePosition().getLon());
+		System.out.println("ModeS = " + db_Item_PlanePosition.getModeSAddress());
+		System.out.println("Alt = " + db_Item_PlanePosition.getPlanePosition().getAlt());
+		System.out.println("Lat = " + db_Item_PlanePosition.getPlanePosition().getLat());
+		System.out.println("Lon = " + db_Item_PlanePosition.getPlanePosition().getLon());
 
 	}
 
