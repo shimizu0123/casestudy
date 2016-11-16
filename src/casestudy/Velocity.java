@@ -24,7 +24,7 @@ public class Velocity {
 		return vel_;
 	}
 
-	public double getDeg() {
+	public int getDeg() {
 		return deg_;
 	}
 
