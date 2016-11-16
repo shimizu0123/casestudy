@@ -16,13 +16,13 @@ public enum TypeCode {
 	}
 
 	private static boolean judgePosition(String rawData) {
-		return 9 <= tc_analys(rawData) && tc_analys(rawData) <= 18;
+		return 9 <= tc_Analyze(rawData) && tc_Analyze(rawData) <= 18;
 	}
 	private static boolean judgeVelocity(String rawData) {
-		return tc_analys(rawData) == 19;
+		return tc_Analyze(rawData) == 19;
 	}
 	private static boolean judgeCallSign(String rawData) {
-		return 1 <= tc_analys(rawData) && tc_analys(rawData) <= 4;
+		return 1 <= tc_Analyze(rawData) && tc_Analyze(rawData) <= 4;
 	}
 
 

@@ -1,6 +1,6 @@
 package casestudyVerText;
 
-public class MainTest {
+public class RealDataTest {
 
 	public static void main(String[] args) {
 

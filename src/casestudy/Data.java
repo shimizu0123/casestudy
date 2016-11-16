@@ -24,7 +24,7 @@ public class Data {
 		return rawData.substring(108, 108+1).equals(this.getTime());
 	}
 	private boolean modeSEquals(String rawData){
-		return ADS_B_Analyzer.modoS_analys(rawData).equals(this.getModeS());
+		return ADS_B_Analyzer.modeS_Analyze(rawData).equals(this.getModeS());
 	}
 	public String getModeS(){
 		return Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));

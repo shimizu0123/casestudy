@@ -17,10 +17,6 @@ public class PlanePosition {
 		return lat_;
 	}
 
-	public void setLat(double lat) {
-		lat_ = lat;
-	}
-
 	public double getLon() {
 		return lon_;
 	}
@@ -46,5 +42,4 @@ public class PlanePosition {
 		sb.append(this.lon_);
 		return sb.toString();
 	}
-
 }

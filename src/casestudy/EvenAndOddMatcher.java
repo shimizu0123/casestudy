@@ -23,13 +23,12 @@ public class EvenAndOddMatcher {
 		if(judgedADS_B_Data(binaryRawData)){
 			printRawData_TypeCode_modeSAddress(binaryRawData);
 
-
 			if(			createTypeCode(binaryRawData) == CALL_SIGN){
 				printCallSign(binaryRawData);
 
 
 			}else if(	createTypeCode(binaryRawData) == VELOCITY){
-				velocity(binaryRawData);
+				calc_velocity(binaryRawData);
 
 
 			}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
@@ -125,18 +124,19 @@ public class EvenAndOddMatcher {
 
 	private static void print_Attitude_Nicnum(String rawData) {
 		sb.append("Altitude = ");
-		sb.append(alt_calc(rawData));
+		sb.append(calc_alt(rawData));
 		sb.append("ft");
 		sb.append('\n');
 
 		sb.append("Nicnum = ");
-		sb.append(nic_analyz(rawData, tc_analys(rawData)));
+		sb.append(calc_nic(rawData,tc_Analyze(rawData)));
 		sb.append('\n');
 	}
 
 	private static void printCallSign(String rawData) {
 		sb.append("Callsign = ");
-		sb.append(callSign(rawData));
+
+		sb.append(calc_callSign(rawData));
 		sb.append('\n');
 	}
 
@@ -144,10 +144,10 @@ public class EvenAndOddMatcher {
 		sb.append(rawData);
 		sb.append('\n');
 		sb.append("TC = ");
-		sb.append(tc_analys(rawData));
+		sb.append(tc_Analyze(rawData));
 		sb.append('\n');
 		sb.append("modeS_Address = ");
-		sb.append(modoS_analys(rawData));
+		sb.append(modeS_Analyze(rawData));
 		sb.append('\n');
 	}
 
