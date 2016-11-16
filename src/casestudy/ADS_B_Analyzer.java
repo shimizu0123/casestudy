@@ -6,22 +6,27 @@ package casestudy;
 public class ADS_B_Analyzer {
 
 	/**
-	 * TypeCcodeを解析
+	 * dataからTypeCcodeを抽出
+	 * @param data SBS-3受信データ(バイナリ形式)
+	 * @return タイプコード番号
 	 */
 	public static int tc_Analyze(String data) {
-		int tcnum;
-		tcnum = Integer.parseInt(data.substring(88,88+5), 2);
-		return tcnum;
+		return Integer.parseInt(data.substring(88,88+5), 2);
 	}
 
 	/**
-	 * モードSアドレスを解析
+	 * dataからモードSアドレスを抽出
+	 * @param data SBS-3受信データ(バイナリ形式)
+	 * @return モードSアドレス
 	 */
 	public static String modeS_Analyze(String data) {
-		 String modeS_Address_hex = Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
-		 return modeS_Address_hex;
+		 return Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
 	}
-
+	/**
+	 * dataにパリティチェックのエラーがあるか確認
+	 * @param data
+	 * @return パリティチェックの結果
+	 */
 	public static boolean parityCheck(String data){
 		return Integer.parseInt(data.substring(144, 168),2) == 0;
 	}

@@ -2,36 +2,34 @@ package casestudy;
 
 import static java.lang.Math.*;
 
-/*
+/**
  * 解析手法クラス
  */
 public class AnalyticalMethod {
 
-	/*
-	 * コールサイン解析
+	/**
+	 * dataからコールサイン解析
+	 * @param data SBS-3受信データ(バイナリ形式)
+	 * @return コールサイン
 	 */
 	public static String calc_callSign(String data){
 
-		String code = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######";
-		StringBuilder sb = new StringBuilder();
+		String mojiCode = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######";
+		StringBuilder callSignBuilder = new StringBuilder();
 
 		for(int i = 96; i < 143; i += 6){
 
-			//System.out.println(data.substring(i,i+6));
-
-			//System.out.println(Integer.parseInt(data.substring(i,i+6), 2));
-
-			sb.append(code.charAt(Integer.parseInt(data.substring(i,i+6), 2)));
+			callSignBuilder.append(mojiCode.charAt(Integer.parseInt(data.substring(i,i+6), 2)));
 		}
 
-		String callSign = sb.toString();
-
-		return callSign;
+		return callSignBuilder.toString();
 	}
 
 
-	/*
-	 * 速度解析
+	/**
+	 * dataから速度解析
+	 * @param data SBS-3受信データ(バイナリ形式)
+	 * @return Velocity(方位、速度のオブジェクト)
 	 */
 	public static Velocity calc_velocity(String data) {
 
@@ -168,7 +166,7 @@ public class AnalyticalMethod {
 	}
 
 	/**
-	 * nic解析
+	 * Nic(精度)解析
 	 * @param data
 	 * @param tcnum
 	 * @return
