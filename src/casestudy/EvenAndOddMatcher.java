@@ -15,13 +15,13 @@ public class EvenAndOddMatcher {
 		rawData = HexToBinary.hexToBinary(rawData);
 
 		if(judgedADS_B_Data(rawData)){
-			int typeCode = ADS_B_Analyzer.tc_analys(rawData);
+			int typeCode = ADS_B_Analyzer.tc_Analyze(rawData);
 			printRawData_TypeCode_modeSAddress(rawData, typeCode);
 
 			if(1 <= typeCode && typeCode <= 4){
 				printCallSign(rawData);
 			}else if(typeCode == 19){
-				AnalyticalMethod.velocity(rawData);
+				AnalyticalMethod.calc_velocity(rawData);
 			}else if(9 <= typeCode && typeCode <= 18){
 				print_Attitude_Nicnum(rawData, typeCode);
 
@@ -51,14 +51,30 @@ public class EvenAndOddMatcher {
 			}
 		}
 
-		//ArrayListへ追加、新しい順にソートする
+		//ArrayListへ追加、新しい順にソートし、古いデータを削除する
+		long deleteTime = 1000 * 10;//削除のしきい値
 		if(judgeEven(rawData)){
 			evenDataList.add(new Data(rawData));
 			Collections.sort(evenDataList, new DataListComparator());
+			long now = System.currentTimeMillis();//現在時刻を取得
+			for(int i = evenDataList.size() - 1; i >= 0; i--){
+				if((now - evenDataList.get(i).getTimeStamp()) >=  deleteTime) evenDataList.remove(i);
+			}
 		}else{
 			oddDataList.add(new Data(rawData));
 			Collections.sort(oddDataList, new DataListComparator());
+			long now = System.currentTimeMillis();//現在時刻を取得
+			for(int i = oddDataList.size() - 1; i >= 0; i--){
+				if((now - oddDataList.get(i).getTimeStamp()) >=  deleteTime) oddDataList.remove(i);
+			}
 		}
+
+		/*
+		 * テスト用　データリストサイズ表示
+		 */
+		System.out.println("******evenDataListサイズ = " + evenDataList.size() + "******");
+		System.out.println("******oddDataListサイズ = " + oddDataList.size() + "******");
+
 	}
 
 	private static boolean judgeOdd(String rawData) {
@@ -71,18 +87,18 @@ public class EvenAndOddMatcher {
 
 	private static void print_Attitude_Nicnum(String rawData, int typeCode) {
 		sb.append("Altitude = ");
-		sb.append(AnalyticalMethod.alt_calc(rawData));
+		sb.append(AnalyticalMethod.calc_alt(rawData));
 		sb.append("ft");
 		sb.append('\n');
 
 		sb.append("Nicnum = ");
-		sb.append(AnalyticalMethod.nic_analyz(rawData, typeCode));
+		sb.append(AnalyticalMethod.calc_nic(rawData, typeCode));
 		sb.append('\n');
 	}
 
 	private static void printCallSign(String rawData) {
 		sb.append("Callsign = ");
-		sb.append(AnalyticalMethod.callSign(rawData));
+		sb.append(AnalyticalMethod.calc_callSign(rawData));
 		sb.append('\n');
 	}
 
@@ -93,7 +109,7 @@ public class EvenAndOddMatcher {
 		sb.append(typeCode);
 		sb.append('\n');
 		sb.append("modeS_Address = ");
-		sb.append(ADS_B_Analyzer.modoS_analys(rawData));
+		sb.append(ADS_B_Analyzer.modeS_Analyze(rawData));
 		sb.append('\n');
 	}
 

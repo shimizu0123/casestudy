@@ -17,24 +17,12 @@ public class PlanePosition {
 		return lat_;
 	}
 
-	public void setLat(double lat) {
-		lat_ = lat;
-	}
-
 	public double getLon() {
 		return lon_;
 	}
 
-	public void setLon(double lon) {
-		lon_ = lon;
-	}
-
 	public double getAlt_() {
 		return alt_;
-	}
-
-	public void setAlt_(double alt_) {
-		this.alt_ = alt_;
 	}
 
 	@Override
