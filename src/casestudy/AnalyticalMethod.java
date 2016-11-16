@@ -16,17 +16,10 @@ public class AnalyticalMethod {
 		StringBuilder sb = new StringBuilder();
 
 		for(int i = 96; i < 143; i += 6){
-
-			//System.out.println(data.substring(i,i+6));
-
-			//System.out.println(Integer.parseInt(data.substring(i,i+6), 2));
-
 			sb.append(code.charAt(Integer.parseInt(data.substring(i,i+6), 2)));
 		}
 
-		String callSign = sb.toString();
-
-		return callSign;
+		return sb.toString();
 	}
 
 
@@ -68,20 +61,22 @@ public class AnalyticalMethod {
 			deg += 360;
 		}
 
-		System.out.println("Velocity = "+ vel + "kn");
-		System.out.println("deg = "+ deg + "deg");
+
 
 		vr = Integer.parseInt(data.substring(125,125+8), 2);
-
 		s_Vr = Integer.parseInt(data.substring(124,124+1), 2);
-		if(s_Vr==1){
-			System.out.println("Down");
-		}
-		if(s_Vr==0){
-			System.out.println("UP");
-		}
 
-		System.out.println(vr + "kn");
+
+//		System.out.println("Velocity = "+ vel + "kn");
+//		System.out.println("deg = "+ deg + "deg");
+//		if(s_Vr==1){
+//			System.out.println("Down");
+//		}
+//		if(s_Vr==0){
+//			System.out.println("UP");
+//		}
+//		System.out.println(vr + "kn");
+
 
 		return new Velocity(s_Vr, vel, deg, vr);
 	}

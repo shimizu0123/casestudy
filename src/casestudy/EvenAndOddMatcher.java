@@ -26,12 +26,12 @@ public class EvenAndOddMatcher {
 				printRawData_TypeCode_modeSAddress(binaryRawData);
 
 				if(			createTypeCode(binaryRawData) == CALL_SIGN){
-					printCallSign(binaryRawData);
-
+					DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calc_callSign(binaryRawData));
+//					printCallSign(binaryRawData);
 
 				}else if(	createTypeCode(binaryRawData) == VELOCITY){
-					calc_velocity(binaryRawData);
-
+					DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), calc_velocity(binaryRawData));
+//					calc_velocity(binaryRawData);
 
 				}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
 
@@ -39,11 +39,12 @@ public class EvenAndOddMatcher {
 
 					planePosition = rawDataToPlanePosition(binaryRawData);
 					if(!(planePosition == null)){
-						sb.append(planePosition.toString());
+						DB_Item_Generator.dB_Item_PlanePosition_Generate(modeS_Analyze(binaryRawData), planePosition);
+//						sb.append(planePosition.toString());
 					}
 				}
 			}
-			System.out.print(sb.toString());
+//			System.out.print(sb.toString());
 			sb = new StringBuilder();
 		}
 		return null;
@@ -126,12 +127,12 @@ public class EvenAndOddMatcher {
 		sb.append('\n');
 	}
 
-	private static void printCallSign(String rawData) {
-		sb.append("Callsign = ");
-
-		sb.append(calc_callSign(rawData));
-		sb.append('\n');
-	}
+//	private static void printCallSign(String rawData) {
+//		sb.append("Callsign = ");
+//
+//		sb.append(calc_callSign(rawData));
+//		sb.append('\n');
+//	}
 
 	private static void printRawData_TypeCode_modeSAddress(String rawData) {
 		sb.append(rawData);
