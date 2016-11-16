@@ -10,7 +10,7 @@ public class ADS_B_Analyzer {
 	 */
 	public static int tc_Analyze(String data) {
 		int tcnum;
-		tcnum = Integer.parseInt(data.substring(87,87+5), 2);
+		tcnum = Integer.parseInt(data.substring(88,88+5), 2);
 		return tcnum;
 	}
 
@@ -18,7 +18,7 @@ public class ADS_B_Analyzer {
 	 * モードSアドレスを解析
 	 */
 	public static String modeS_Analyze(String data) {
-		 String modeS_Address_hex = Integer.toHexString(Integer.parseInt(data.substring(63,63+24), 2));
+		 String modeS_Address_hex = Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
 		 return modeS_Address_hex;
 	}
 
