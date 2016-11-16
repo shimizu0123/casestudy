@@ -29,11 +29,11 @@ public class PlanePosition {
 		lon_ = lon;
 	}
 
-	public double getAlt_() {
+	public double getAlt() {
 		return alt_;
 	}
 
-	public void setAlt_(double alt_) {
+	public void eetAlt(double alt_) {
 		this.alt_ = alt_;
 	}
 
