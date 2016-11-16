@@ -3,6 +3,9 @@ package casestudy;
 
 public class TestSensorAccessObject {
 
+	private static final String ipAddress = "192.168.3.171";
+	private static final int portNumber = 10001;
+
 	/**
 	 * @param args
 	 */
@@ -10,7 +13,7 @@ public class TestSensorAccessObject {
 		// TODO 自動生成されたメソッド・スタブ
 
 		SensorAccessObject testSOA = null;
-		testSOA = new SensorAccessObject("192.168.3.171",10001);
+		testSOA = new SensorAccessObject(ipAddress, portNumber);
 
 		testSOA.connect();
 		for(int i=0;i < 100; i++){
