@@ -2,6 +2,7 @@ package casestudy;
 
 import static casestudy.ADS_B_Analyzer.*;
 import static casestudy.AnalyticalMethod.*;
+import static casestudy.PlanePositionFactory.*;
 import static casestudy.TypeCode.*;
 
 import java.util.ArrayList;
@@ -18,41 +19,33 @@ public class EvenAndOddMatcher {
 
 	public static String analyzeData(String hexRawData){
 		String binaryRawData = HexToBinary.hexToBinary(hexRawData);
+		PlanePosition planePosition = null;
+
+		if(parityCheck(binaryRawData)){
+			if(judgedADS_B_Data(binaryRawData)){
+				printRawData_TypeCode_modeSAddress(binaryRawData);
+
+				if(			createTypeCode(binaryRawData) == CALL_SIGN){
+					printCallSign(binaryRawData);
 
 
-		if(judgedADS_B_Data(binaryRawData)){
-			printRawData_TypeCode_modeSAddress(binaryRawData);
-
-			if(			createTypeCode(binaryRawData) == CALL_SIGN){
-				printCallSign(binaryRawData);
+				}else if(	createTypeCode(binaryRawData) == VELOCITY){
+					calc_velocity(binaryRawData);
 
 
-			}else if(	createTypeCode(binaryRawData) == VELOCITY){
-				calc_velocity(binaryRawData);
+				}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
 
+					print_Attitude_Nicnum(binaryRawData);
 
-			}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
-
-				print_Attitude_Nicnum(binaryRawData);
-
-				ArrayList<Data>addDataList;
-				ArrayList<Data>pairDataList;
-
-				if(judgeEven(binaryRawData)){
-					addDataList		= evenDataList;
-					pairDataList	= oddDataList;
-				}else{
-					addDataList		= oddDataList;
-					pairDataList	= evenDataList;
+					planePosition = rawDataToPlanePosition(binaryRawData);
+					if(!(planePosition == null)){
+						sb.append(planePosition.toString());
+					}
 				}
-
-				listAdd(binaryRawData,addDataList);
-				planePositonCreator(binaryRawData,pairDataList);
-
 			}
+			System.out.print(sb.toString());
+			sb = new StringBuilder();
 		}
-		System.out.print(sb.toString());
-		sb = new StringBuilder();
 		return null;
 	}
 
