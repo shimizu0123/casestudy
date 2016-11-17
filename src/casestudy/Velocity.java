@@ -20,17 +20,19 @@ public class Velocity {
 		return s_Vr_;
 	}
 
-	public double getVel() {
-		return vel_;
+	public double getVr() {
+		return vr_;
 	}
 
 	public int getDeg() {
 		return deg_;
 	}
 
-	public double getVr() {
-		return vr_;
+	public double getVel() {
+		return vel_;
 	}
+
+
 
 //	@Override
 //	public String toString(){

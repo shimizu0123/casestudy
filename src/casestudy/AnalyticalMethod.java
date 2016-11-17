@@ -64,7 +64,7 @@ public class AnalyticalMethod {
 		vr = Integer.parseInt(data.substring(125,125+8), 2);
 		s_Vr = Integer.parseInt(data.substring(124,124+1), 2);
 
-		return new Velocity(s_Vr, vel, deg, vr);
+		return new Velocity(s_Vr, vr, deg, vel);
 	}
 
 
