@@ -22,6 +22,9 @@ public class ADS_B_Analyzer {
 		 return modeS_Address_hex;
 	}
 
+	/**
+	 * CRCチェック
+	 */
 	public static boolean parityCheck(String data){
 		return Integer.parseInt(data.substring(144, 168),2) == 0;
 	}

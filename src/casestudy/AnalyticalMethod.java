@@ -61,22 +61,8 @@ public class AnalyticalMethod {
 			deg += 360;
 		}
 
-
-
 		vr = Integer.parseInt(data.substring(125,125+8), 2);
 		s_Vr = Integer.parseInt(data.substring(124,124+1), 2);
-
-
-//		System.out.println("Velocity = "+ vel + "kn");
-//		System.out.println("deg = "+ deg + "deg");
-//		if(s_Vr==1){
-//			System.out.println("Down");
-//		}
-//		if(s_Vr==0){
-//			System.out.println("UP");
-//		}
-//		System.out.println(vr + "kn");
-
 
 		return new Velocity(s_Vr, vel, deg, vr);
 	}
