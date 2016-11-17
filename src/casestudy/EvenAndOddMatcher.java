@@ -20,7 +20,7 @@ public class EvenAndOddMatcher {
 
 		if(hexRawDataCheck(hexRawData)){
 
-			System.out.println(hexRawData);
+//			System.out.println(hexRawData);
 
 			String binaryRawData = HexToBinary.hexToBinary(hexRawData);
 			PlanePosition planePosition = null;

@@ -5,41 +5,21 @@ public class DB_Item_Generator {
 	public static void dB_Item_CallSign_Generate(String modeS, String callSign){
 		DB_Item_CallSign db_Item_CallSign = new DB_Item_CallSign(modeS, callSign);
 
-		/**
-		 * テスト用
-		 */
-		System.out.println("** Generated dB_Item_CallSign **");
-		System.out.println("ModeS = " + db_Item_CallSign.getModeSAddress());
-		System.out.println("CallSign = " + db_Item_CallSign.getCallSign());
+		System.out.println(db_Item_CallSign.toString());
 
 	}
 
 	public static void dB_Item_Velocity_Generate(String modeS, Velocity velocity){
 		DB_Item_Velocity db_Item_Velocity = new DB_Item_Velocity(modeS, velocity);
 
-		/**
-		 * テスト用
-		 */
-		System.out.println("** Generated dB_Item_Velocity **");
-		System.out.println("ModeS = " + db_Item_Velocity.getModeSAddress());
-		System.out.println("S_Vr = " + db_Item_Velocity.getVelocity().getS_Vr());
-		System.out.println("Vr = " + db_Item_Velocity.getVelocity().getVr());
-		System.out.println("Deg = " + db_Item_Velocity.getVelocity().getDeg());
-		System.out.println("Vel = " + db_Item_Velocity.getVelocity().getVel());
+		System.out.println(db_Item_Velocity.toString());
 
 	}
 
 	public static void dB_Item_PlanePosition_Generate(String modeS, PlanePosition planePosition){
 		DB_Item_PlanePosition db_Item_PlanePosition = new DB_Item_PlanePosition(modeS, planePosition);
 
-		/**
-		 * テスト用
-		 */
-		System.out.println("** Generated dB_Item_PlanePosition **");
-		System.out.println("ModeS = " + db_Item_PlanePosition.getModeSAddress());
-		System.out.println("Alt = " + db_Item_PlanePosition.getPlanePosition().getAlt());
-		System.out.println("Lat = " + db_Item_PlanePosition.getPlanePosition().getLat());
-		System.out.println("Lon = " + db_Item_PlanePosition.getPlanePosition().getLon());
+		System.out.println(db_Item_PlanePosition.toString());
 
 	}
 
