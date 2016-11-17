@@ -1,5 +1,7 @@
 package casestudy;
 
+import java.text.SimpleDateFormat;
+
 public class DB_Item_Velocity {
 
 	private long timeStamp_;
@@ -39,7 +41,8 @@ public class DB_Item_Velocity {
 
 	@Override
 	public String toString(){
-		return ("Velocity," + timeStamp_ + "," + modeSAddress_ + "," + velocity_.toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss:SSS");
+		return ("Velocity," + sdf.format(timeStamp_) + "," + modeSAddress_ + "," + velocity_.toString());
 	}
 
 }

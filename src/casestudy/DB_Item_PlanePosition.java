@@ -1,5 +1,7 @@
 package casestudy;
 
+import java.text.SimpleDateFormat;
+
 public class DB_Item_PlanePosition {
 
 	private long timeStamp_;
@@ -39,7 +41,8 @@ public class DB_Item_PlanePosition {
 
 	@Override
 	public String toString(){
-		return ("PlanePosition," + timeStamp_ + "," + modeSAddress_ + "," + planePosition_.toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss:SSS");
+		return ("PlanePosition," + sdf.format(timeStamp_) + "," + modeSAddress_ + "," + planePosition_.toString());
 	}
 
 }

@@ -1,5 +1,7 @@
 package casestudy;
 
+import java.text.SimpleDateFormat;
+
 public class DB_Item_CallSign {
 
 	private long timeStamp_;
@@ -39,7 +41,8 @@ public class DB_Item_CallSign {
 
 	@Override
 	public String toString(){
-		return ("CallSign," + timeStamp_ + "," + modeSAddress_ + "," + callSign_);
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss:SSS");
+		return ("CallSign," + sdf.format(timeStamp_) + "," + modeSAddress_ + "," + callSign_);
 	}
 
 }
