@@ -39,7 +39,7 @@ public class DB_Item_CallSign {
 
 	@Override
 	public String toString(){
-		return (timeStamp_ + "," + modeSAddress_ + "," + callSign_);
+		return ("CallSign," + timeStamp_ + "," + modeSAddress_ + "," + callSign_);
 	}
 
 }

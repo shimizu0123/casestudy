@@ -39,7 +39,7 @@ public class DB_Item_PlanePosition {
 
 	@Override
 	public String toString(){
-		return (timeStamp_ + "," + modeSAddress_ + "," + planePosition_.toString());
+		return ("PlanePosition," + timeStamp_ + "," + modeSAddress_ + "," + planePosition_.toString());
 	}
 
 }
