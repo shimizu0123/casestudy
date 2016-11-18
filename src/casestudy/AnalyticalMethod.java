@@ -35,7 +35,6 @@ public class AnalyticalMethod {
 	 */
 	static int NZ = 15;
 
-
 	public static PlanePosition calc_Position(String dataE, String dataO, int t_even, int t_odd){
 
 		double lat_CPR_E = bin_to_dec_Lat_CPR(dataE);
