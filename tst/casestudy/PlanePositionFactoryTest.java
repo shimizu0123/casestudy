@@ -12,9 +12,9 @@ import org.junit.runner.RunWith;
 @RunWith(Enclosed.class)
 public class PlanePositionFactoryTest {
 
-	public static class PlanePositionがちゃんとできるかテスト{
+	public static class PlanePosition作成テスト{
 		@Test
-		public void テストデータ11行目と32行目でのテスト() {
+		public void テストデータ11行目と32行目からPlanePosition作成テスト() {
 			double actual ;
 			double expected = 36.077286856515066;
 			PlanePosition sut;
@@ -35,7 +35,7 @@ public class PlanePositionFactoryTest {
 		}
 
 		@Test
-		public void テストデータ32行目と61行目でのテスト() {
+		public void テストデータ32行目と61行目からPlanePosition作成テスト() {
 			double actual ;
 			double expected = 34.24406433105469;
 			PlanePosition sut;
@@ -56,16 +56,16 @@ public class PlanePositionFactoryTest {
 		}
 	}
 
-	public static class Listが追加されるかテスト{
+	public static class Listへの追加テスト{
 		@Test
-		public void OddListテスト(){
+		public void OddListへ追加するテスト(){
 			int expected = getOddDataList().size() + 1;
 			int actual = listAdd(hexToBinary(TestDataRead.fileReadLine(328)),getOddDataList());
 			assertThat("ODD:",actual, is(expected));
 		}
 
 		@Test
-		public void EvenListテスト(){
+		public void EvenListへ追加するテスト(){
 			int expected = getEvenDataList().size()  + 1;
 			int actual = listAdd(hexToBinary(TestDataRead.fileReadLine(304)),getEvenDataList());
 			assertThat("EVEN:",actual, is(expected));

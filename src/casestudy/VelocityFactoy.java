@@ -64,7 +64,7 @@ public class VelocityFactoy {
 	/**
 	 * データから南北方向における速度を計算。
 	 * @param data SBS-3受信データ(バイナリ形式)
-	 * @return 南北方向における速度(kn/h、絶対値)
+	 * @return 南北方向における速度(kn/h)
 	 */
 	public static double calcNSVelocity(String data) {
 		double v_NS;
@@ -79,7 +79,7 @@ public class VelocityFactoy {
 	/**
 	 * データから東西方向における速度を計算。
 	 * @param data SBS-3受信データ(バイナリ形式)
-	 * @return 東西方向における速度(kn/h、絶対値)
+	 * @return 東西方向における速度(kn/h)
 	 */
 	public static double calcEWVelocity(String data) {
 		double v_EW;

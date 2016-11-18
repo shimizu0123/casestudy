@@ -12,7 +12,7 @@ public class TypeCodeTest {
 
 
 	@Test
-	public void createVerocityTestテストデータ4_12_13() {
+	public void createVerocityTestテストデータ4行目_12行目_13行目() {
 		TypeCode actual = createTypeCode(hexToBinary((TestDataRead.fileReadLine(4))));
 		TypeCode expected = VELOCITY;
 		assertThat("テストデータ4行目:",actual,is(expected));
@@ -24,7 +24,7 @@ public class TypeCodeTest {
 		assertThat("テストデータ132行目:",actual,is(expected));
 	}
 	@Test
-	public void createCallSignTestテストデータ130_147_189() {
+	public void createCallSignTestテストデータ130行目_147行目_189行目() {
 		TypeCode actual = createTypeCode(hexToBinary((TestDataRead.fileReadLine(130))));
 		TypeCode expected = CALL_SIGN;
 		assertThat("テストデータ130行目:",actual,is(expected));
@@ -36,7 +36,7 @@ public class TypeCodeTest {
 		assertThat("テストデータ189行目:",actual,is(expected));
 	}
 	@Test
-	public void createPlanePositonTestテストデータ11_32_61() {
+	public void createPlanePositonTestテストデータ11行目_32行目_61行目() {
 		TypeCode actual = createTypeCode(hexToBinary((TestDataRead.fileReadLine(11))));
 		TypeCode expected = PLANE_POSITION;
 		assertThat("テストデータ11行目:",actual,is(expected));
@@ -48,7 +48,7 @@ public class TypeCodeTest {
 		assertThat("テストデータ61行目:",actual,is(expected));
 	}
 	@Test
-	public void createOtherTestテストデータ3_5_7() {
+	public void createOtherTestテストデータ3行目_5行目_7行目() {
 		TypeCode actual = createTypeCode(hexToBinary((TestDataRead.fileReadLine(3))));
 		TypeCode expected = OTHER;
 		assertThat("テストデータ3行目:",actual,is(expected));
@@ -59,7 +59,5 @@ public class TypeCodeTest {
 		actual = createTypeCode(hexToBinary((TestDataRead.fileReadLine(7))));
 		assertThat("テストデータ7行目:",actual,is(expected));
 	}
-
-
 
 }
