@@ -2,13 +2,13 @@ package casestudy;
 
 import static casestudy.HexToBinary.*;
 import static casestudy.TestDataRead.*;
-import static casestudy.VelocityFactoy.*;
+import static casestudy.VelocityFactory.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class VelocityFactoyTest {
+public class VelocityFactoryTest {
 
 	@Test
 	public void testCalc_velocityテストデータ116行目() {

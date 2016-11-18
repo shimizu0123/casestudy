@@ -28,7 +28,7 @@ public class EvenAndOddMatcher {
 					if(			createTypeCode(binaryRawData) == CALL_SIGN){
 						DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calc_callSign(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == VELOCITY){
-						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), VelocityFactoy.calc_velocity(binaryRawData));
+						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), VelocityFactory.calc_velocity(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
 						planePosition = rawDataToPlanePosition(binaryRawData);
 						if(!(planePosition == null)){
