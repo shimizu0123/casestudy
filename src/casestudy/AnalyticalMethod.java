@@ -19,8 +19,10 @@ public class AnalyticalMethod {
 
 		for(int i = 96; i < 143; i += 6){
 
+
 			callSignBuilder.append(mojiCode.charAt(Integer.parseInt(data.substring(i,i+6), 2)));
 		}
+
 
 		return callSignBuilder.toString();
 	}
@@ -66,22 +68,10 @@ public class AnalyticalMethod {
 			deg += 360;
 		}
 
-		System.out.println("Velocity = "+ vel + "kn");
-		System.out.println("deg = "+ deg + "deg");
-
 		vr = Integer.parseInt(data.substring(125,125+8), 2);
-
 		s_Vr = Integer.parseInt(data.substring(124,124+1), 2);
-		if(s_Vr==1){
-			System.out.println("Down");
-		}
-		if(s_Vr==0){
-			System.out.println("UP");
-		}
 
-		System.out.println(vr + "kn");
-
-		return new Velocity(s_Vr, vel, deg, vr);
+		return new Velocity(s_Vr, vr, deg, vel);
 	}
 
 

@@ -15,36 +15,29 @@ public class EvenAndOddMatcher {
 	static final long DELETE_TIME = 1000 * 10;//削除のしきい値(ms)
 	static ArrayList<Data> evenDataList = new ArrayList<Data>();
 	static ArrayList<Data> oddDataList = new ArrayList<Data>();
-	static StringBuilder sb = new StringBuilder();
 
 	public static String analyzeData(String hexRawData){
-		String binaryRawData = HexToBinary.hexToBinary(hexRawData);
-		PlanePosition planePosition = null;
 
-		if(parityCheck(binaryRawData)){
-			if(judgedADS_B_Data(binaryRawData)){
-				printRawData_TypeCode_modeSAddress(binaryRawData);
+		if(hexRawDataCheck(hexRawData)){
 
-				if(			createTypeCode(binaryRawData) == CALL_SIGN){
-					printCallSign(binaryRawData);
+//			System.out.println(hexRawData);
 
-
-				}else if(	createTypeCode(binaryRawData) == VELOCITY){
-					calc_velocity(binaryRawData);
-
-
-				}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
-
-					print_Attitude_Nicnum(binaryRawData);
-
-					planePosition = rawDataToPlanePosition(binaryRawData);
-					if(!(planePosition == null)){
-						sb.append(planePosition.toString());
+			String binaryRawData = HexToBinary.hexToBinary(hexRawData);
+			PlanePosition planePosition = null;
+			if(parityCheck(binaryRawData)){
+				if(judgedADS_B_Data(binaryRawData)){
+					if(			createTypeCode(binaryRawData) == CALL_SIGN){
+						DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calc_callSign(binaryRawData));
+					}else if(	createTypeCode(binaryRawData) == VELOCITY){
+						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), calc_velocity(binaryRawData));
+					}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
+						planePosition = rawDataToPlanePosition(binaryRawData);
+						if(!(planePosition == null)){
+							DB_Item_Generator.dB_Item_PlanePosition_Generate(modeS_Analyze(binaryRawData), planePosition);
+						}
 					}
 				}
 			}
-			System.out.print(sb.toString());
-			sb = new StringBuilder();
 		}
 		return null;
 	}
@@ -54,20 +47,9 @@ public class EvenAndOddMatcher {
 	 * @param rawData
 	 */
 	public static void listAdd(String rawData,ArrayList<Data> addDataList){
-
 		addDataList.add(new Data(rawData));
 		Collections.sort(addDataList, new DataListComparator());
 		oldListDelete(addDataList);
-
-		/*
-		 * テスト用　データリストサイズ表示
-		 */
-		if(judgeEven(rawData)){
-			System.out.println("******evenDataListサイズ = " + addDataList.size() + "******");
-		}else{
-			System.out.println("******oddDataListサイズ = " + addDataList.size() + "******");
-		}
-
 	}
 
 	private static void oldListDelete(ArrayList<Data> dataList) {
@@ -89,8 +71,6 @@ public class EvenAndOddMatcher {
 		String listData;
 		PlanePosition planePosition = null;
 
-
-		//リストを参照　モードSアドレスが同じ　かつ　Timeビットが同じ　→　計算可能
 		for(Data pairData : pairDataList){
 			if(pairData.timeAndModeSEquals(rawData)){
 				listData = pairData.getData();
@@ -104,7 +84,6 @@ public class EvenAndOddMatcher {
 			}
 		}
 		return planePosition;
-
 	}
 
 	private static boolean judgeOdd(String rawData) {
@@ -115,35 +94,6 @@ public class EvenAndOddMatcher {
 		return !(judgeOdd(rawData));
 	}
 
-	private static void print_Attitude_Nicnum(String rawData) {
-		sb.append("Altitude = ");
-		sb.append(calc_alt(rawData));
-		sb.append("ft");
-		sb.append('\n');
-
-		sb.append("Nicnum = ");
-		sb.append(calc_nic(rawData,tc_Analyze(rawData)));
-		sb.append('\n');
-	}
-
-	private static void printCallSign(String rawData) {
-		sb.append("Callsign = ");
-
-		sb.append(calc_callSign(rawData));
-		sb.append('\n');
-	}
-
-	private static void printRawData_TypeCode_modeSAddress(String rawData) {
-		sb.append(rawData);
-		sb.append('\n');
-		sb.append("TC = ");
-		sb.append(tc_Analyze(rawData));
-		sb.append('\n');
-		sb.append("modeS_Address = ");
-		sb.append(modeS_Analyze(rawData));
-		sb.append('\n');
-	}
-
 	private static boolean judgedADS_B_Data(String rawData) {
 		return createDownLinkFormatNo(rawData) == 17;
 	}
@@ -152,4 +102,7 @@ public class EvenAndOddMatcher {
 		return Integer.parseInt(data.substring(56,56+5), 2);
 	}
 
+	private static boolean hexRawDataCheck(String hexRawData){
+		return hexRawData.length() == 75;
+	}
 }

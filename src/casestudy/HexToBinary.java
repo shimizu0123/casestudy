@@ -4,7 +4,6 @@ public class HexToBinary {
 	public static String hexToBinary(String hex){
 		String data = new String();
 		StringBuilder sb = new StringBuilder();
-		//System.out.println("*** hexの長さ ***" + hex.length());
 		for(int j = 0; j < hex.length(); j++){
 			int ch = hex.charAt(j);
 			if((48 <= ch && ch <= 57) || (97 <= ch && ch <= 102)){

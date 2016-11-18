@@ -33,13 +33,21 @@ public class PlanePosition {
 		this.alt_ = alt_;
 	}
 
+//	@Override
+//	public String toString(){
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("Lat = ");
+//		sb.append(lat_);
+//		sb.append(", Lon = ");
+//		sb.append(lon_);
+//		sb.append(", Alt = ");
+//		sb.append(alt_);
+//		return sb.toString();
+//	}
+
 	@Override
 	public String toString(){
-		StringBuilder sb = new StringBuilder();
-		sb.append("Lat = ");
-		sb.append(lat_);
-		sb.append("	,Lon = ");
-		sb.append(this.lon_);
-		return sb.toString();
+		return (lat_ + "," + lon_ + "," + alt_);
 	}
+
 }

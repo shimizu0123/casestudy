@@ -14,16 +14,12 @@ public class RealDataTest {
 		testSOA.connect();
 
 		/*
-		 * 100行分のデータを受信、解析する
+		 * 1000行分のデータを受信、解析する
 		 */
 		for(int i = 0;i < 1000; i++){
 			String hex = testSOA.readSensor();
-			if(hex.length() >= 75){
-
-				EvenAndOddMatcher.analyzeData(hex);
-			}
+			EvenAndOddMatcher.analyzeData(hex);
 		}
-
 		testSOA.close();
 	}
 }

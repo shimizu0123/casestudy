@@ -9,27 +9,48 @@ public class Velocity {
 	private double vel_;//速さ
 
 	//コンストラクタ
-	Velocity(int S_Vr, double Vel, double deg, double Vr){
-		this.s_Vr_ = S_Vr;
-		this.vel_ = Vel;
+	Velocity(int s_Vr, double vr, double deg, double vel){
+		this.s_Vr_ = s_Vr;
+		this.vr_ = vr;
 		this.deg_ = (int)deg;
-		this.vr_ = Vr;
+		this.vel_ = vel;
 	}
 
 	public int getS_Vr() {
 		return s_Vr_;
 	}
 
+	public double getVr() {
+		return vr_;
+	}
+
+	public int getDeg() {
+		return deg_;
+	}
+
 	public double getVel() {
 		return vel_;
 	}
 
-	public double getDeg() {
-		return deg_;
-	}
 
-	public double getVr() {
-		return vr_;
+
+//	@Override
+//	public String toString(){
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("S_Vr = ");
+//		sb.append(s_Vr_);
+//		sb.append(", Vr = ");
+//		sb.append(vr_);
+//		sb.append("Deg_ = ");
+//		sb.append(deg_);
+//		sb.append(", Vel = ");
+//		sb.append(vel_);
+//		return sb.toString();
+//	}
+
+	@Override
+	public String toString(){
+		return (s_Vr_ + "," + vr_ + "," + deg_ + "," + vel_);
 	}
 
 }

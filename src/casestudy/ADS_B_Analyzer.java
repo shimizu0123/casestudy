@@ -22,6 +22,7 @@ public class ADS_B_Analyzer {
 	public static String modeS_Analyze(String data) {
 		 return Integer.toHexString(Integer.parseInt(data.substring(64,64+24), 2));
 	}
+
 	/**
 	 * dataにパリティチェックのエラーがあるか確認
 	 * @param data
