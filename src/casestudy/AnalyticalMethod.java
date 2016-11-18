@@ -29,6 +29,7 @@ public class AnalyticalMethod {
 	 * @param data SBS-3受信データ(バイナリ形式)
 	 * @return Velocity(方位、速度のオブジェクト)
 	 */
+	@Deprecated
 	public static Velocity calc_velocity(String data) {
 		return new Velocity(calcVerticalSign(data), calcVerticalVerocity(data),calcHorizonDeg(data), calcHorizonVelocity(data));
 	}
