@@ -25,12 +25,6 @@ public class AnalyticalMethod {
 	}
 
 	/**
-	 * dataから水平方向の速度・方位と垂直方向の速度・向きを解析
-	 * @param data SBS-3受信データ(バイナリ形式)
-	 * @return Velocity(方位、速度のオブジェクト)
-	 */
-
-	/**
 	 * 位置解析
 	 */
 	static int NZ = 15;
