@@ -2,6 +2,7 @@ package casestudy;
 
 import static casestudy.ADS_B_Analyzer.*;
 import static casestudy.AnalyticalMethod.*;
+import static casestudy.CallSignFactory.*;
 import static casestudy.PlanePositionFactory.*;
 import static casestudy.TypeCode.*;
 
@@ -26,7 +27,7 @@ public class EvenAndOddMatcher {
 				if(judgedADS_B_Data(binaryRawData)){
 
 					if(			createTypeCode(binaryRawData) == CALL_SIGN){
-						DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calc_callSign(binaryRawData));
+						DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calcCallSign(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == VELOCITY){
 						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), VelocityFactory.calc_velocity(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
@@ -74,9 +75,9 @@ public class EvenAndOddMatcher {
 			if(pairData.timeAndModeSEquals(rawData)){
 				listData = pairData.getData();
 				if(judgeEven(rawData)){
-					planePosition = calc_Position(rawData, listData, 1, 0);
+					planePosition = calc_Position(rawData, listData, true);
 				}else{
-					planePosition = calc_Position(listData, rawData, 0, 1);
+					planePosition = calc_Position(listData, rawData, false);
 				}
 
 				break;

@@ -71,9 +71,9 @@ public class PlanePositionFactory {
 			if(pairData.timeAndModeSEquals(rawData)){
 				listData = pairData.getData();
 				if(judgeEven(rawData)){
-					planePosition = calc_Position(rawData, listData, 1, 0);
+					planePosition = calc_Position(rawData, listData, true);
 				}else{
-					planePosition = calc_Position(listData, rawData, 0, 1);
+					planePosition = calc_Position(listData, rawData, false);
 				}
 
 				break;
