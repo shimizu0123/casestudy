@@ -1,5 +1,7 @@
 package casestudy;
 
+import static casestudy.HexToBinary.*;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -48,5 +50,9 @@ public class TestDataRead {
 	public static String fileReadLine(int lineNo) {
 		return fileReadLine("test1000.txt",lineNo);
 	}
+	public static String fileReadLineBinary(int lineNo) {
+		return hexToBinary(fileReadLine("test1000.txt",lineNo));
+	}
+
 
 }

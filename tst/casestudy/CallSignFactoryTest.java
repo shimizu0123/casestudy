@@ -1,7 +1,6 @@
 package casestudy;
 
 import static casestudy.CallSignFactory.*;
-import static casestudy.HexToBinary.*;
 import static casestudy.TestDataRead.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -13,7 +12,7 @@ public class CallSignFactoryTest {
 	@Test
 	public void テストデータ130行目によりコールサインJAL2464_が返るテスト() {
 		String expected 	= "JAL2464_";
-		String actual		= calcCallSign(hexToBinary(fileReadLine(130)));
+		String actual		= calcCallSign(fileReadLineBinary(130));
 
 		assertThat(actual, is(expected));
 	}
@@ -21,7 +20,7 @@ public class CallSignFactoryTest {
 	@Test
 	public void テストデータ147行目によりコールサインANA764__が返るテスト() {
 		String expected 	= "ANA764__";
-		String actual		= calcCallSign(hexToBinary(fileReadLine(147)));
+		String actual		= calcCallSign(fileReadLineBinary(147));
 
 		assertThat(actual, is(expected));
 	}

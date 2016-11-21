@@ -1,6 +1,5 @@
 package casestudy;
 
-import static casestudy.HexToBinary.*;
 import static casestudy.PlanePositionFactory.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -19,8 +18,8 @@ public class PlanePositionFactoryTest {
 			double expected = 36.077286856515066;
 			PlanePosition sut;
 
-			rawDataToPlanePosition(hexToBinary(TestDataRead.fileReadLine(11)));
-			sut = rawDataToPlanePosition(hexToBinary(TestDataRead.fileReadLine(32)));
+			rawDataToPlanePosition(TestDataRead.fileReadLineBinary(11));
+			sut = rawDataToPlanePosition(TestDataRead.fileReadLineBinary(32));
 			actual = sut.getLat();
 			assertThat("LAT TEST:",actual, is(expected));
 
@@ -40,8 +39,8 @@ public class PlanePositionFactoryTest {
 			double expected = 34.24406433105469;
 			PlanePosition sut;
 
-			rawDataToPlanePosition(hexToBinary(TestDataRead.fileReadLine(32)));
-			sut = rawDataToPlanePosition(hexToBinary(TestDataRead.fileReadLine(61)));
+			rawDataToPlanePosition(TestDataRead.fileReadLineBinary(32));
+			sut = rawDataToPlanePosition(TestDataRead.fileReadLineBinary(61));
 			actual = sut.getLat();
 			assertThat("LAT TEST:",actual, is(expected));
 
@@ -60,14 +59,14 @@ public class PlanePositionFactoryTest {
 		@Test
 		public void OddListへ追加するテスト(){
 			int expected = getOddDataList().size() + 1;
-			int actual = listAdd(hexToBinary(TestDataRead.fileReadLine(328)),getOddDataList());
+			int actual = listAdd(TestDataRead.fileReadLineBinary(328),getOddDataList());
 			assertThat("ODD:",actual, is(expected));
 		}
 
 		@Test
 		public void EvenListへ追加するテスト(){
 			int expected = getEvenDataList().size()  + 1;
-			int actual = listAdd(hexToBinary(TestDataRead.fileReadLine(304)),getEvenDataList());
+			int actual = listAdd(TestDataRead.fileReadLineBinary(304),getEvenDataList());
 			assertThat("EVEN:",actual, is(expected));
 		}
 
