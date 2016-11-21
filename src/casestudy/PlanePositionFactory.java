@@ -1,6 +1,6 @@
 package casestudy;
 
-import static casestudy.AnalyticalMethod.*;
+import static casestudy.LatLonAltAnalyzer.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

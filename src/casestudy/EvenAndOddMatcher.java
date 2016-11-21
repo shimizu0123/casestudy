@@ -1,7 +1,7 @@
 package casestudy;
 
 import static casestudy.ADS_B_Analyzer.*;
-import static casestudy.AnalyticalMethod.*;
+import static casestudy.LatLonAltAnalyzer.*;
 import static casestudy.CallSignFactory.*;
 import static casestudy.PlanePositionFactory.*;
 import static casestudy.TypeCode.*;

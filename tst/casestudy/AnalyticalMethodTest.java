@@ -1,6 +1,6 @@
 package casestudy;
 
-import static casestudy.AnalyticalMethod.*;
+import static casestudy.LatLonAltAnalyzer.*;
 import static casestudy.TestDataRead.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;

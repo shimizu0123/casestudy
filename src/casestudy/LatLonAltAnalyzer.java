@@ -6,7 +6,7 @@ import static java.lang.Math.*;
  * 解析手法クラス<br>
  * Nic(精度計算)は使用予定がなかったため未実装
  */
-public class AnalyticalMethod {
+public class LatLonAltAnalyzer {
 
 
 	/**
