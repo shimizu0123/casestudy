@@ -14,5 +14,6 @@ public class UsedTestDataTest {
 				EvenAndOddMatcher.analyzeData(hex);
 			}
 		}
+		System.out.println("終了しました");
 	}
 }

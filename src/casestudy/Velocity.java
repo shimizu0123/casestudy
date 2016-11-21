@@ -32,25 +32,17 @@ public class Velocity {
 		return vel_;
 	}
 
-
-
-//	@Override
-//	public String toString(){
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("S_Vr = ");
-//		sb.append(s_Vr_);
-//		sb.append(", Vr = ");
-//		sb.append(vr_);
-//		sb.append("Deg_ = ");
-//		sb.append(deg_);
-//		sb.append(", Vel = ");
-//		sb.append(vel_);
-//		return sb.toString();
-//	}
-
 	@Override
 	public String toString(){
-		return (s_Vr_ + "," + vr_ + "," + deg_ + "," + vel_);
+		StringBuilder sb = new StringBuilder();
+		sb.append(s_Vr_);
+		sb.append(",");
+		sb.append(vr_);
+		sb.append(",");
+		sb.append(deg_);
+		sb.append(",");
+		sb.append(vel_);
+		return (sb.toString());
 	}
 
 }
