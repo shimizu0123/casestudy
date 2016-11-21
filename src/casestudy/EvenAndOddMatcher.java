@@ -20,16 +20,15 @@ public class EvenAndOddMatcher {
 
 		if(hexRawDataCheck(hexRawData)){
 
-//			System.out.println(hexRawData);
-
 			String binaryRawData = HexToBinary.hexToBinary(hexRawData);
 			PlanePosition planePosition = null;
 			if(parityCheck(binaryRawData)){
 				if(judgedADS_B_Data(binaryRawData)){
+
 					if(			createTypeCode(binaryRawData) == CALL_SIGN){
 						DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calc_callSign(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == VELOCITY){
-						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), VelocityFactoy.calc_velocity(binaryRawData));
+						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), VelocityFactory.calc_velocity(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
 						planePosition = rawDataToPlanePosition(binaryRawData);
 						if(!(planePosition == null)){
@@ -103,6 +102,10 @@ public class EvenAndOddMatcher {
 	}
 
 	private static boolean hexRawDataCheck(String hexRawData){
-		return hexRawData.length() == 75;
+		if(hexRawData.length() >= 75){
+			return hexRawData.substring(0,0+8).equals("10 02 01");
+		}
+		return  false;
 	}
+
 }

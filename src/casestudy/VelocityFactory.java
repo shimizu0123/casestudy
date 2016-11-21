@@ -3,7 +3,7 @@ package casestudy;
  * SBS-3受信データ(バイナリ形式)からVelocity型のデータを作るクラス
  * Velocity型は、水平方向の速度・方位と垂直方向の速度・向きからなるデータ
  */
-public class VelocityFactoy {
+public class VelocityFactory {
 	/**
 	 * dataから水平方向の速度・方位と垂直方向の速度・向きを解析
 	 * @param data SBS-3受信データ(バイナリ形式)
@@ -64,7 +64,7 @@ public class VelocityFactoy {
 	/**
 	 * データから南北方向における速度を計算。
 	 * @param data SBS-3受信データ(バイナリ形式)
-	 * @return 南北方向における速度(kn/h、絶対値)
+	 * @return 南北方向における速度(kn/h)
 	 */
 	public static double calcNSVelocity(String data) {
 		double v_NS;
@@ -79,7 +79,7 @@ public class VelocityFactoy {
 	/**
 	 * データから東西方向における速度を計算。
 	 * @param data SBS-3受信データ(バイナリ形式)
-	 * @return 東西方向における速度(kn/h、絶対値)
+	 * @return 東西方向における速度(kn/h)
 	 */
 	public static double calcEWVelocity(String data) {
 		double v_EW;
