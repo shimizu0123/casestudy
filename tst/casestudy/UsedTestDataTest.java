@@ -1,9 +1,13 @@
 package casestudy;
 
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 public class UsedTestDataTest {
 
-
-	public static void main(String[] args) {
+	@Category(SlowTests.class)
+	@Test
+	public void テストデータを使用したテスト() {
 		/*
 		 * 867行分のデータを受信、解析する
 		 */

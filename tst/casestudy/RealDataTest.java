@@ -1,11 +1,16 @@
 package casestudy;
 
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 public class RealDataTest {
 
 	final static String ipAddress = "192.168.3.171";
 	final static int portNum = 10001;
 
-	public static void main(String[] args) {
+	@Category(SlowTests.class)
+	@Test
+	public void SBS3を使用したテスト() {
 		/*
 		 * SBS-3と接続
 		 */
@@ -14,9 +19,9 @@ public class RealDataTest {
 		testSOA.connect();
 
 		/*
-		 * 10000行分のデータを受信、解析する
+		 * 500行分のデータを受信、解析する
 		 */
-		for(int i = 0;i < 10000; i++){
+		for(int i = 0;i < 500; i++){
 			String hex = testSOA.readSensor();
 			EvenAndOddMatcher.analyzeData(hex);
 		}
