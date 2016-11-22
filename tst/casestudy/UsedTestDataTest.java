@@ -9,10 +9,8 @@ public class UsedTestDataTest {
 		 */
 		for(int i = 1;i < 867; i++){
 			String hex = TestDataRead.fileReadLine(i);
-			if(hex.length() >= 75){
+			EvenAndOddMatcher.analyzeData(hex);
 
-				EvenAndOddMatcher.analyzeData(hex);
-			}
 		}
 		System.out.println("終了しました");
 	}
