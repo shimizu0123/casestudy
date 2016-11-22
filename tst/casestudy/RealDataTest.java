@@ -1,11 +1,17 @@
 package casestudy;
 
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 public class RealDataTest {
 
 	final static String ipAddress = "192.168.3.171";
 	final static int portNum = 10001;
 
-	public static void main(String[] args) {
+
+	@Category(SlowTests.class)
+	@Test
+	public void SBS3を使用したテスト() {
 
 		SensorAccessObject testSOA = new SensorAccessObject(ipAddress, portNum);
 
@@ -15,8 +21,9 @@ public class RealDataTest {
 		testSOA.connect();
 
 		/*
-		 * 指定した行数分のデータを受信、解析する
+		 * 500行分のデータを受信、解析する
 		 */
+
 		try{
 			for(int i = 0; i < 500; i++){
 				String hex = testSOA.readSensor();
