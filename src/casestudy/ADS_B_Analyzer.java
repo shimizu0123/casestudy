@@ -1,7 +1,7 @@
 package casestudy;
 
 /**
- * タイプコード DF17データ解析クラス
+ * タイプコードがDF17のデータを解析クラス
  */
 public class ADS_B_Analyzer {
 

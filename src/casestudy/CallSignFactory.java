@@ -1,7 +1,13 @@
 package casestudy;
 
+/**
+ * SBS-3受信データ(バイナリ形式)からCallSignをString型のデータで変換するクラス
+ */
 public class CallSignFactory {
-
+	/**
+	 * 文字コードデータ抽出した数字をこの文字コードで変換する
+	 * 参考:ADS-Bフォーマットp2
+	 */
 	private static final String MOJI_CODE = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######";
 	/**
 	 * dataからコールサイン解析
