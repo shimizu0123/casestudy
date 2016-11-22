@@ -1,8 +1,8 @@
 package casestudy;
 
 import static casestudy.ADS_B_Analyzer.*;
-import static casestudy.LatLonAltAnalyzer.*;
 import static casestudy.CallSignFactory.*;
+import static casestudy.LatLonAltAnalyzer.*;
 import static casestudy.PlanePositionFactory.*;
 import static casestudy.TypeCode.*;
 
@@ -103,8 +103,8 @@ public class EvenAndOddMatcher {
 	}
 
 	private static boolean hexRawDataCheck(String hexRawData){
-		if(hexRawData.length() >= 75){
-			return hexRawData.substring(0,0+8).equals("10 02 01");
+		if(hexRawData.length() == 75){
+			return hexRawData.substring(0,0+8).equals("10 02 01") && hexRawData.substring(63,63+5).equals("10 03");
 		}
 		return  false;
 	}
