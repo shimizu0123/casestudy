@@ -6,23 +6,31 @@ public class RealDataTest {
 	final static int portNum = 10001;
 
 	public static void main(String[] args) {
+
+		SensorAccessObject testSOA = new SensorAccessObject(ipAddress, portNum);
+
 		/*
 		 * SBS-3と接続
 		 */
-		SensorAccessObject testSOA = null;
-		testSOA = new SensorAccessObject(ipAddress, portNum);
 		testSOA.connect();
 
 		/*
-		 * 10000行分のデータを受信、解析する
+		 * 指定した行数分のデータを受信、解析する
 		 */
-		for(int i = 0;i < 10000; i++){
-			String hex = testSOA.readSensor();
-			EvenAndOddMatcher.analyzeData(hex);
+		try{
+			for(int i = 0; i < 500; i++){
+				String hex = testSOA.readSensor();
+				EvenAndOddMatcher.analyzeData(hex);
+			}
+		}finally{
+
+			/*
+			 * SBS-3との接続を切断
+			 */
+			testSOA.close();
+			System.out.println("*** 終了 ***");
 		}
 
-		System.out.println("!終了！");
-
-		testSOA.close();
 	}
+
 }
