@@ -26,18 +26,6 @@ public class DB_Item_CallSign {
 		return callSign_;
 	}
 
-//	@Override
-//	public String toString(){
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("ModeS Address = ");
-//		sb.append(modeSAddress_);
-//		sb.append(", CallSign = ");
-//		sb.append(callSign_);
-//		sb.append('\n');
-//		sb.append("TimeStamp = ");
-//		sb.append(timeStamp_);
-//		return sb.toString();
-//	}
 
 	@Override
 	public String toString(){

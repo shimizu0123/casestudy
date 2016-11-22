@@ -26,18 +26,6 @@ public class DB_Item_PlanePosition {
 		return planePosition_;
 	}
 
-//	@Override
-//	public String toString(){
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("ModeS Address = ");
-//		sb.append(modeSAddress_);
-//		sb.append(", ");
-//		sb.append(planePosition_.toString());
-//		sb.append('\n');
-//		sb.append("TimeStamp = ");
-//		sb.append(timeStamp_);
-//		return sb.toString();
-//	}
 
 	@Override
 	public String toString(){
