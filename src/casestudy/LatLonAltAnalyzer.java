@@ -111,8 +111,8 @@ public class LatLonAltAnalyzer {
 	 * 緯度ゾーン番号jの算出
 	 * 参考:ADS-Bフォーマットp5
 	 * 	j = floor(59 × Lat_cprE - 60 Lat_cprO + 1/2)
-	 * @param dataE
-	 * @param dataO
+	 * @param dataE SBS-3受信したevenデータ(バイナリ形式)
+	 * @param dataO SBS-3受信したoddデータ(バイナリ形式)
 	 * @return 緯度ゾーン番号を返す
 	 */
 	public static double latIndexJ(String dataE, String dataO) {
@@ -122,7 +122,7 @@ public class LatLonAltAnalyzer {
 	 * 緯度における経度ゾーン数
 	 * 参考:ADS-Bフォーマットp4
 	 *	極地に近い緯度では、東西方向に分割したゾーン数は少なく
-	 *		Lat > +86	or Lat < -86	⇒	NL=1
+	 *		Lat &gt; +86	or Lat &lt; -86	⇒	NL=1
 	 *	赤道に近い緯度では、東西方向に分割したゾーン数は少なく
 	 *		Lat = 0						⇒	NL=59
 	 * @param lat 緯度
@@ -145,7 +145,7 @@ public class LatLonAltAnalyzer {
 	}
 	/**
 	 * dataからCPR(Compact Position Reporting)形式のLat(緯度)を抽出
-	 * @param data data SBS-3受信データ(バイナリ形式)
+	 * @param data SBS-3受信データ(バイナリ形式)
 	 * @return lat	CPR(Compact Position Reporting)形式の緯度
 	 */
 	private static double binToLatCPRFormat(String data) {
@@ -158,6 +158,8 @@ public class LatLonAltAnalyzer {
 
 	/**
 	 * 高度解析
+	 * @param data SBS-3受信データ(バイナリ形式)
+	 * @return 高度 単位フィート
 	 */
 	public static int calc_alt(String data) {
 		int n=0;

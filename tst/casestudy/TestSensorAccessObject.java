@@ -7,7 +7,7 @@ public class TestSensorAccessObject {
 	private static final int portNumber = 10001;
 
 	/**
-	 * @param args
+	 * @param args 不使用
 	 */
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ

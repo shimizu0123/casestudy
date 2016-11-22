@@ -51,7 +51,7 @@ public class SensorAccessObject {
 
 	/**
 	 * データの読み込み
-	 * @return
+	 * @return スペース区切りのHexデータ
 	 */
 	public String readSensor(){
 		StringBuilder sb = new StringBuilder();

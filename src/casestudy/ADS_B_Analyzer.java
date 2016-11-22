@@ -25,7 +25,7 @@ public class ADS_B_Analyzer {
 
 	/**
 	 * dataにパリティチェックのエラーがあるか確認
-	 * @param data
+	 * @param data SBS-3受信データ(バイナリ形式)
 	 * @return パリティチェックの結果
 	 */
 	public static boolean parityCheck(String data){

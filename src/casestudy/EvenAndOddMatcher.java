@@ -1,8 +1,8 @@
 package casestudy;
 
 import static casestudy.ADS_B_Analyzer.*;
-import static casestudy.LatLonAltAnalyzer.*;
 import static casestudy.CallSignFactory.*;
+import static casestudy.LatLonAltAnalyzer.*;
 import static casestudy.PlanePositionFactory.*;
 import static casestudy.TypeCode.*;
 
@@ -44,7 +44,8 @@ public class EvenAndOddMatcher {
 
 	/**
 	 * rawDataを対象Listに追加し、整理する
-	 * @param rawData
+	 * @param rawData SBS-3受信データ(バイナリ形式)
+	 * @param addDataList 追加対象のリスト(EvenList又はOddList)
 	 */
 	public static void listAdd(String rawData,ArrayList<Data> addDataList){
 		addDataList.add(new Data(rawData));
@@ -63,8 +64,9 @@ public class EvenAndOddMatcher {
 	 * 位置情報のrawDataと対になるデータを
 	 * evenDataList又はOddDataListから探し、
 	 * PlanePostionを返す。なければ、null値を返す
-	 * @param rawData
-	 * @returnb PlanePositon 航空機の緯度経度高度情報
+	 * @param rawData SBS-3受信データ(バイナリ形式)
+	 * @param pairDataList rawDataがEvenならOddList。rawDataがOddならEvenList
+	 * @return PlanePositon 航空機の緯度経度高度情報
 	 */
 	public static PlanePosition planePositonCreator(String rawData,ArrayList<Data> pairDataList) {
 
