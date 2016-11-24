@@ -13,8 +13,8 @@ public class VelocityDAO {
 	}
 
 	public DB_Item_Velocity insertvelocity(DB_Item_Velocity velocity) throws SQLException{
-		String sql = "INSERT INTO velocity(modes, H_velocity, V_velocity, H_direction, V_direction )"+
-					"VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO velocity(modes, H_velocity, V_velocity, H_direction, V_direction, timestamp)"+
+					"VALUES(?,?,?,?,?,systimestamp)";
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
@@ -24,6 +24,7 @@ public class VelocityDAO {
 			stmt.setDouble(3,velocity.getVelocity().getVr());
 			stmt.setInt(4,velocity.getVelocity().getDeg());
 			stmt.setInt(5,velocity.getVelocity().getS_Vr());
+//			stmt.setLong(6,velocity.getTimeStamp());
 
 			stmt.executeUpdate();//追加するinsert
 

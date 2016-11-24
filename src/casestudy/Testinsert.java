@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class Testinsert {
 	public static void callsigninsert(DB_Item_CallSign callsign) {
 		Connection   con = null;
-//		DB_Item_CallSign callsign = new DB_Item_CallSign();
+
 
 		try{
 			con = ConnectionManager.getConnection();
@@ -35,7 +35,6 @@ public class Testinsert {
 
 	public static void positioninsert(DB_Item_PlanePosition position) {
 		Connection   con = null;
-//		DB_Item_PlanePosition position = new DB_Item_PlanePosition();
 
 		try{
 			con = ConnectionManager.getConnection();
@@ -62,12 +61,10 @@ public class Testinsert {
 		System.out.println(position.getPlanePosition().getLon());
 		System.out.println(position.getPlanePosition().getLat());
 		System.out.println(position.getPlanePosition().getAlt());
-
 	}
 
 	public static void velocityinsert(DB_Item_Velocity velocity) {
 		Connection   con = null;
-//		DB_Item_Velocity velocity = new DB_Item_Velocity();
 
 		try{
 			con = ConnectionManager.getConnection();
