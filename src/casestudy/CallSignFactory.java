@@ -9,6 +9,7 @@ public class CallSignFactory {
 	 * 参考:ADS-Bフォーマットp2
 	 */
 	private static final String MOJI_CODE = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ#####_###############0123456789######";
+
 	/**
 	 * dataからコールサイン解析
 	 * @param data SBS-3受信データ(バイナリ形式)

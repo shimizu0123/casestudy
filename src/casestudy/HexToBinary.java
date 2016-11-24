@@ -1,6 +1,15 @@
 package casestudy;
 
+/**
+ * SBS-3から受信した生データを解析処理しやすい形に変換するクラス
+ */
 public class HexToBinary {
+
+	/**
+	 * 16進数かつスペースで区切られて表記されたデータを2進数かつスペース区切りなしのデータに変換する
+	 * @param hex 生データ
+	 * @return data 変換済みのデータ
+	 */
 	public static String hexToBinary(String hex){
 		String data = new String();
 		StringBuilder sb = new StringBuilder();
@@ -17,4 +26,5 @@ public class HexToBinary {
 		sb.delete(0, sb.length());
 		return data;
 	}
+
 }

@@ -7,6 +7,9 @@ public class Data {
 	private String data;
 	private long timeStamp;
 
+	/**
+	 * コンストラクタ
+	 */
 	Data(String data){
 		this.data = data;
 		this.timeStamp = System.currentTimeMillis();

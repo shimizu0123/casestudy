@@ -13,10 +13,12 @@ public class LatLonAltAnalyzer {
 	 * 地理緯度の区切り数
 	 */
 	private static final int COUNT_OF_LON_ZONE = 15;
+
 	/**
 	 * Even(偶数)における南北方向における緯度帯の幅
 	 */
 	private static final double LAT_DEPTH_E = (double)360 / (4 * COUNT_OF_LON_ZONE);
+
 
 	/**
 	 * Odd(奇数)における南北方向における緯度帯の幅
@@ -31,7 +33,6 @@ public class LatLonAltAnalyzer {
 	 * @return PlanePosition 緯度経度高度を格納したオブジェクト
 	 */
 	public static PlanePosition calc_Position(String dataE, String dataO, boolean evenNewThanOdd){
-
 		double lat = calcLat(dataE, dataO, evenNewThanOdd);
 		double lon = calcLon(dataE, dataO, evenNewThanOdd);
 		int alt = calcAlt(dataE, dataO, evenNewThanOdd);
@@ -107,6 +108,7 @@ public class LatLonAltAnalyzer {
 		if(lat_E >= 270) lat_E -= 360;
 		return lat_E;
 	}
+
 	/**
 	 * 緯度ゾーン番号jの算出
 	 * 参考:ADS-Bフォーマットp5
@@ -118,6 +120,7 @@ public class LatLonAltAnalyzer {
 	public static double latIndexJ(String dataE, String dataO) {
 		return floor(59.0 * binToLatCPRFormat(dataE) - 60.0 * binToLatCPRFormat(dataO) + 0.5);
 	}
+
 	/**
 	 * 緯度における経度ゾーン数
 	 * 参考:ADS-Bフォーマットp4
@@ -143,6 +146,7 @@ public class LatLonAltAnalyzer {
 	private static double binToLonCPRFormat(String data) {
 		return (double)Integer.parseInt(data.substring(127,127+17), 2) /131072;
 	}
+
 	/**
 	 * dataからCPR(Compact Position Reporting)形式のLat(緯度)を抽出
 	 * @param data SBS-3受信データ(バイナリ形式)
@@ -152,6 +156,12 @@ public class LatLonAltAnalyzer {
 		return (double)Integer.parseInt(data.substring(110,110+17), 2)/131072;
 	}
 
+	/**
+	 * mod(x,y)を返す
+	 * @param x
+	 * @param y
+	 * @return mod
+	 */
 	public static double mod(double x,double y) {
 		return x-y*floor(x/y);
 	}
@@ -162,22 +172,25 @@ public class LatLonAltAnalyzer {
 	 * @return 高度 単位フィート
 	 */
 	public static int calc_alt(String data) {
-		int n=0;
-
-		String frontbit=data.substring(96,96+7);
-		String backbit=data.substring(103,103+4);
-
+		int n = 0;
+		String frontbit = data.substring(96, 96+7);
+		String backbit = data.substring(103, 103+4);
 		String altbin = frontbit + backbit;
 
-		if(unitBit(data)==1)n=25;
-		else n=100;
+		//高度を何ft基準で解析するか判別
+		if(unitBit(data) == 1) n = 25;
+		else n = 100;
 
-		int altitude = Integer.parseInt(altbin,2)*n-1000;
-
+		int altitude = Integer.parseInt(altbin, 2) * n - 1000;
 
 		return altitude;
 	}
 
+	/**
+	 * ADS-Bメッセージの48bit目(ここでは103bit目)がたっているか
+	 * @param data
+	 * @return 0 or 1
+	 */
 	private static int unitBit(String data) {
 		int unitbit = Integer.parseInt(data.substring(103,104),2);
 		return unitbit;

@@ -7,7 +7,7 @@ import java.util.Comparator;
 public class DataListComparator implements Comparator<Data> {
 
     /**
-     * 比較メソッド（データクラスを比較して-1, 0, 1を返すように記述する）
+     * 比較メソッド タイムスタンプを基に昇順でソートする（データクラスを比較して-1, 0, 1を返すように記述する）
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
     public int compare(Data a, Data b) {
