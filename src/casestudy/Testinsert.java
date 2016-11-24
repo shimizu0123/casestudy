@@ -9,7 +9,7 @@ public class Testinsert {
 
 		try{
 			con = ConnectionManager.getConnection();
-			System.out.println("接続完了");
+			System.out.println("接続完了call");
 
 			CallsignDAO InsCallsign =new CallsignDAO(con);
 			InsCallsign.insertcallsign(callsign);
@@ -38,7 +38,7 @@ public class Testinsert {
 
 		try{
 			con = ConnectionManager.getConnection();
-			System.out.println("接続完了");
+			System.out.println("接続完了posi");
 
 			PositionDAO InsPosition =new PositionDAO(con);
 			InsPosition.insertposition(position);
@@ -68,7 +68,7 @@ public class Testinsert {
 
 		try{
 			con = ConnectionManager.getConnection();
-			System.out.println("接続完了");
+			System.out.println("接続完了velo");
 
 			VelocityDAO InsVelocity =new VelocityDAO(con);
 			InsVelocity.insertvelocity(velocity);

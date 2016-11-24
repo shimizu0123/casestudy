@@ -24,11 +24,20 @@ public class RealDataTest {
 		 * 500行分のデータを受信、解析する
 		 */
 
+
 		try{
-			for(int i = 0; i < 500; i++){
+
+
+
+			AircraftSerch kurachan = new AircraftSerch();
+
+			kurachan.start();
+			for(int i = 0; i < 100; i++){
 				String hex = testSOA.readSensor();
 				EvenAndOddMatcher.analyzeData(hex);
 			}
+
+
 		}finally{
 
 			/*
