@@ -3,6 +3,7 @@
 	<name>casestudy</name>
 	<comment></comment>
 	<projects>
+		<project>sample</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

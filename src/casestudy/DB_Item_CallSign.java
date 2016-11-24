@@ -41,8 +41,8 @@ public class DB_Item_CallSign {
 
 	@Override
 	public String toString(){
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss:SSS");
-		return ("CallSign," + sdf.format(timeStamp_) + "," + modeSAddress_ + "," + callSign_);
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss");
+		return ("CallSign," + "'"+sdf.format(timeStamp_) + "," + modeSAddress_ + "," + callSign_);
 	}
 
 }

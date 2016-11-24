@@ -41,8 +41,8 @@ public class DB_Item_PlanePosition {
 
 	@Override
 	public String toString(){
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss:SSS");
-		return ("PlanePosition," + sdf.format(timeStamp_) + "," + modeSAddress_ + "," + planePosition_.toString());
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss");
+		return ("PlanePosition," + "'"+sdf.format(timeStamp_) + "," + modeSAddress_ + "," + planePosition_.toString());
 	}
 
 }
