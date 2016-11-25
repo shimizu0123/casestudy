@@ -23,7 +23,7 @@ public class LatLonAltAnalyzer {
 	/**
 	 * Odd(奇数)における南北方向における緯度帯の幅
 	 */
-	private static final double LAT_DEPTH_O= (double)360 / (4 * (COUNT_OF_LON_ZONE - 1));
+	private static final double LAT_DEPTH_O= (double)360 / (4 * COUNT_OF_LON_ZONE - 1);
 
 	/**
 	 * モードSアドレスが一致したEven(偶数)、Odd(奇数)データから緯度経度高度を保存したPlanePositionを返す
@@ -98,12 +98,12 @@ public class LatLonAltAnalyzer {
 		else lat = calcLatO(dataE, dataO);
 		return lat;
 	}
-	private static double calcLatO(String dataE, String dataO) {
+	public static double calcLatO(String dataE, String dataO) {
 		double lat_O = LAT_DEPTH_O * (mod(latIndexJ(dataE, dataO), 59) + binToLatCPRFormat(dataO));
 		if(lat_O >= 270) lat_O -= 360;
 		return lat_O;
 	}
-	private static double calcLatE(String dataE, String dataO) {
+	public static double calcLatE(String dataE, String dataO) {
 		double lat_E = LAT_DEPTH_E * (mod(latIndexJ(dataE, dataO), 60) + binToLatCPRFormat(dataE));
 		if(lat_E >= 270) lat_E -= 360;
 		return lat_E;
@@ -143,7 +143,7 @@ public class LatLonAltAnalyzer {
 	 * @param data data SBS-3受信データ(バイナリ形式)
 	 * @return lon	CPR(Compact Position Reporting)形式の経度
 	 */
-	private static double binToLonCPRFormat(String data) {
+	public static double binToLonCPRFormat(String data) {
 		return (double)Integer.parseInt(data.substring(127,127+17), 2) /131072;
 	}
 
@@ -152,7 +152,7 @@ public class LatLonAltAnalyzer {
 	 * @param data SBS-3受信データ(バイナリ形式)
 	 * @return lat	CPR(Compact Position Reporting)形式の緯度
 	 */
-	private static double binToLatCPRFormat(String data) {
+	public static double binToLatCPRFormat(String data) {
 		return (double)Integer.parseInt(data.substring(110,110+17), 2)/131072;
 	}
 

@@ -7,7 +7,36 @@ import static org.hamcrest.MatcherAssert.*;
 
 import org.junit.Test;
 
-public class AnalyticalMethodTest {
+public class LatLonAltAnalyzerTest {
+
+	@Test
+	public void latIndexJTestテストデータ11_32行目で5を返す(){
+		int actual		= (int)(latIndexJ(fileReadLineBinary(11), fileReadLineBinary(32)));
+		int expected	= 5;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void binToLatCPRFormatTestテストデータ11行目で0_706932を返す(){
+		double actual	= binToLatCPRFormat(fileReadLineBinary(11));
+		double expected	= 0.7069320678710938;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void binToLatCPRFormatTestテストデータ32行目で0_612022を返す(){
+		double actual	= binToLatCPRFormat(fileReadLineBinary(32));
+		double expected	= 0.6120223999023438;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void calcLatOTestテストデータ11_32行目で34_24285を返す(){
+		double actual	= calcLatO(fileReadLineBinary(11),fileReadLineBinary(32));
+		double expected	= 34.24284854177701;
+		assertThat(actual, is(expected));
+	}
+
 
 	@Test
 	public void countOfLatZoneTest0度で59個を返す() {
@@ -58,10 +87,10 @@ public class AnalyticalMethodTest {
 		String dataO = fileReadLineBinary(629);
 		boolean evenNewThanOdd = false;
 		double actual	= calcLat(dataE,dataO,evenNewThanOdd);
-		double expected	= 36.6502434866769;
+		double expected	= 34.78667178396451;
 		assertThat("Lat:",actual, is(expected));
 		actual	= calcLon(dataE,dataO,evenNewThanOdd);
-		expected	= 136.52072987657914;
+		expected	= 133.6765480041504;
 		assertThat("Lon:",actual, is(expected));
 		int actual2	= calcAlt(dataE,dataO,evenNewThanOdd);
 		int expected2	= 38100;
@@ -89,10 +118,10 @@ public class AnalyticalMethodTest {
 		String dataO = fileReadLineBinary(789);
 		boolean evenNewThanOdd = false;
 		double actual	= calcLat(dataE,dataO,evenNewThanOdd);
-		double expected	= 36.64607456752232;
+		double expected	= 34.78271484375;
 		assertThat("Lat:",actual, is(expected));
 		actual	= calcLon(dataE,dataO,evenNewThanOdd);
-		expected	= 136.50179599193817;
+		expected	= 133.65800857543945;
 		assertThat("Lon:",actual, is(expected));
 		int actual2	= calcAlt(dataE,dataO,evenNewThanOdd);
 		int expected2	= 38075;
@@ -104,10 +133,10 @@ public class AnalyticalMethodTest {
 		String dataO = fileReadLineBinary(789);
 		boolean evenNewThanOdd = false;
 		double actual	= calcLat(dataE,dataO,evenNewThanOdd);
-		double expected	= 36.64607456752232;
+		double expected	= 34.78271484375;
 		assertThat("Lat:",actual, is(expected));
 		actual	= calcLon(dataE,dataO,evenNewThanOdd);
-		expected	= 136.50179599193817;
+		expected	= 133.65800857543945;
 		assertThat("Lon:",actual, is(expected));
 		int actual2	= calcAlt(dataE,dataO,evenNewThanOdd);
 		int expected2	= 38075;
