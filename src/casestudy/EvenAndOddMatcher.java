@@ -56,6 +56,8 @@ public class EvenAndOddMatcher {
 		return null;
 	}
 
+
+
 	/**
 	 * SBS-3から受信した生データ(16進数表記かつスペースで区切られている)のフォーマットが正しいか判別
 	 * @param hexRawData

@@ -23,6 +23,7 @@ public class CallSignFactory {
 			callSignBuilder.append(MOJI_CODE.charAt(Integer.parseInt(data.substring(i,i+6), 2)));
 		}
 
+
 		return callSignBuilder.toString();
 	}
 }
