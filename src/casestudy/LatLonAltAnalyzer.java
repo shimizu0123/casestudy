@@ -122,7 +122,7 @@ public class LatLonAltAnalyzer {
 	}
 
 	/**
-	 * 緯度における経度ゾーン数
+	 * 緯度における経度ゾーン数NL
 	 * 参考:ADS-Bフォーマットp4
 	 *	極地に近い緯度では、東西方向に分割したゾーン数は少なく
 	 *		Lat &gt; +86	or Lat &lt; -86	⇒	NL=1

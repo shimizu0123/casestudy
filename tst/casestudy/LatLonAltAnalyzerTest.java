@@ -10,6 +10,33 @@ import org.junit.Test;
 public class LatLonAltAnalyzerTest {
 
 	@Test
+	public void binToLonCPRFormatTestテストデータ11行目で0_410622を返す(){
+		double actual	= binToLonCPRFormat(fileReadLineBinary(11));
+		double expected	= 0.41062164306640625;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void binToLonCPRFormatTestテストデータ32行目で0_035027を返す(){
+		double actual	= binToLonCPRFormat(fileReadLineBinary(32));
+		double expected	= 0.03502655029296875;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void countOfLatZoneTestテストデータ11行目32行目のEvenで49を返す(){
+		int actual		= countOfLatZone(calcLatE(fileReadLineBinary(11),fileReadLineBinary(32)));
+		int expected	= 49;
+		assertThat(actual, is(expected));
+	}
+	@Test
+	public void countOfLatZoneTestテストデータ11行目32行目のOddで49を返す(){
+		int actual		= countOfLatZone(calcLatO(fileReadLineBinary(11),fileReadLineBinary(32)));
+		int expected	= 49;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
 	public void latIndexJTestテストデータ11_32行目で5を返す(){
 		int actual		= (int)(latIndexJ(fileReadLineBinary(11), fileReadLineBinary(32)));
 		int expected	= 5;
@@ -34,6 +61,13 @@ public class LatLonAltAnalyzerTest {
 	public void calcLatOTestテストデータ11_32行目で34_24285を返す(){
 		double actual	= calcLatO(fileReadLineBinary(11),fileReadLineBinary(32));
 		double expected	= 34.24284854177701;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void calcLatETestテストデータ11_32行目で34_24285を返す(){
+		double actual	= calcLatE(fileReadLineBinary(11),fileReadLineBinary(32));
+		double expected	= 34.24159240722656;
 		assertThat(actual, is(expected));
 	}
 
@@ -97,6 +131,25 @@ public class LatLonAltAnalyzerTest {
 		assertThat("Alt:",actual2, is(expected2));
 
 	}
+	@Test
+	public void テストデータ11行目32行目calcLon() {
+		String dataE = fileReadLineBinary(11);
+		String dataO = fileReadLineBinary(32);
+		boolean evenNewThanOdd = false;
+		double actual	= calcLon(dataE,dataO,evenNewThanOdd);
+		double expected	= 135.26269912719727;
+		assertThat("Lon:",actual, is(expected));
+	}
+	@Test
+	public void テストデータ32行目11行目calcLon() {
+		String dataE = fileReadLineBinary(11);
+		String dataO = fileReadLineBinary(32);
+		boolean evenNewThanOdd = true;
+		double actual	= calcLon(dataE,dataO,evenNewThanOdd);
+		double expected	= 135.26171003069197;
+		assertThat("Lon:",actual, is(expected));
+	}
+
 	@Test
 	public void calcLat_calcLon_calcAltTestテストデータ820行目789行目() {
 		String dataE = fileReadLineBinary(820);
