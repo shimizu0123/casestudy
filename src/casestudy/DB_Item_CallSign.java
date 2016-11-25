@@ -7,8 +7,13 @@ import java.text.SimpleDateFormat;
  */
 public class DB_Item_CallSign {
 
+	/** タイムスタンプ */
 	private long timeStamp_;
+
+	/** ModeSアドレス */
 	private String modeSAddress_;
+
+	/** コールサイン */
 	private String callSign_;
 
 	/**

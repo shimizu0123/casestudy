@@ -1,6 +1,7 @@
 package casestudy;
 
 import java.util.Comparator;
+
 /**
  * Dataクラスのソートを行うためのクラス
  */
@@ -11,6 +12,7 @@ public class DataListComparator implements Comparator<Data> {
      * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
      */
     public int compare(Data a, Data b) {
+
         long no1 = a.getTimeStamp();
         long no2 = b.getTimeStamp();
 
@@ -25,6 +27,7 @@ public class DataListComparator implements Comparator<Data> {
             return -1;
 
         }
+
     }
 
 }

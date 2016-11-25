@@ -196,5 +196,4 @@ public class LatLonAltAnalyzer {
 		return unitbit;
 	}
 
-
 }
