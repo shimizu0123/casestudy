@@ -71,7 +71,7 @@ public class LatLonAltAnalyzer {
 	 * @return 緯度ゾーン番号を返す
 	 */
 	public static double latIndexJ(String dataE, String dataO) {
-		return floor(59.0 * lat_cpr(dataE) - 60.0 * lat_cpr(dataO) + (1/2));
+		return floor(59.0 * lat_cpr(dataE) - 60.0 * lat_cpr(dataO) + 0.5);
 	}
 
 	/**

@@ -37,7 +37,6 @@ public class DB_Item_Generator {
 	 */
 	public static void dB_Item_PlanePosition_Generate(String modeS, PlanePosition planePosition){
 		DB_Item_PlanePosition db_Item_PlanePosition = new DB_Item_PlanePosition(modeS, planePosition);
-
 		//Testinsert.positioninsert(db_Item_PlanePosition);//DBにPlanepositionを格納
 		System.out.println(db_Item_PlanePosition.toString());
 

@@ -25,7 +25,7 @@ public class RealDataTest {
 		 */
 
 		try{
-			for(int i = 0; i < 500; i++){
+			for(int i = 0; i < 500;i++ ){
 				String hex = testSOA.readSensor();
 				EvenAndOddMatcher.analyzeData(hex);
 			}

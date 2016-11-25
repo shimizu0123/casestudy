@@ -8,7 +8,12 @@ import static org.hamcrest.MatcherAssert.*;
 import org.junit.Test;
 
 public class LatLonAltAnalyzerTest {
-
+	@Test
+	public void nlTest34_6で49を返す(){
+		int actual	= nl(34.6);
+		int expected	= 49;
+		assertThat(actual, is(expected));
+	}
 	@Test
 	public void binToLonCPRFormatTestテストデータ11行目で0_410622を返す(){
 		double actual	= lon_cpr(fileReadLineBinary(11));
@@ -20,6 +25,19 @@ public class LatLonAltAnalyzerTest {
 	public void binToLonCPRFormatTestテストデータ32行目で0_035027を返す(){
 		double actual	= lon_cpr(fileReadLineBinary(32));
 		double expected	= 0.03502655029296875;
+		assertThat(actual, is(expected));
+	}
+	@Test
+	public void latETestテストデータ844行目548行目のEvenで49を返す(){
+		double actual		= latE(fileReadLineBinary(844),fileReadLineBinary(548));
+		double expected	= 34.617919921875;
+		assertThat(actual, is(expected));
+	}
+
+	@Test
+	public void countOfLatZoneTestテストデータ844行目548行目のEvenで49を返す(){
+		int actual		= nl(latE(fileReadLineBinary(844),fileReadLineBinary(548)));
+		int expected	= 49;
 		assertThat(actual, is(expected));
 	}
 
