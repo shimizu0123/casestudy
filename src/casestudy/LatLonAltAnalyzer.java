@@ -198,8 +198,13 @@ public class LatLonAltAnalyzer {
 	 */
 	public static PlanePosition calc_Position(String dataE, String dataO, boolean evenNewThanOdd){
 		double lat = calcLat(dataE, dataO, evenNewThanOdd);
+
+		//チェック NL(Lat_E)とNL(Lat_O)を比べる 同様の値にならない時、計算を中止する
+		if((int)latE(dataE, dataO) != (int)latO(dataE, dataO)) return null;
+
 		double lon = calcLon(dataE, dataO, evenNewThanOdd);
 		int alt = calcAlt(dataE, dataO, evenNewThanOdd);
+
 		return  new PlanePosition(lat, lon, alt);
 	}
 
