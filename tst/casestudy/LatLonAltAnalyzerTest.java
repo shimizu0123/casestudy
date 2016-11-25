@@ -11,27 +11,27 @@ public class LatLonAltAnalyzerTest {
 
 	@Test
 	public void binToLonCPRFormatTestテストデータ11行目で0_410622を返す(){
-		double actual	= binToLonCPRFormat(fileReadLineBinary(11));
+		double actual	= lon_cpr(fileReadLineBinary(11));
 		double expected	= 0.41062164306640625;
 		assertThat(actual, is(expected));
 	}
 
 	@Test
 	public void binToLonCPRFormatTestテストデータ32行目で0_035027を返す(){
-		double actual	= binToLonCPRFormat(fileReadLineBinary(32));
+		double actual	= lon_cpr(fileReadLineBinary(32));
 		double expected	= 0.03502655029296875;
 		assertThat(actual, is(expected));
 	}
 
 	@Test
 	public void countOfLatZoneTestテストデータ11行目32行目のEvenで49を返す(){
-		int actual		= countOfLatZone(calcLatE(fileReadLineBinary(11),fileReadLineBinary(32)));
+		int actual		= nl(latE(fileReadLineBinary(11),fileReadLineBinary(32)));
 		int expected	= 49;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTestテストデータ11行目32行目のOddで49を返す(){
-		int actual		= countOfLatZone(calcLatO(fileReadLineBinary(11),fileReadLineBinary(32)));
+		int actual		= nl(latO(fileReadLineBinary(11),fileReadLineBinary(32)));
 		int expected	= 49;
 		assertThat(actual, is(expected));
 	}
@@ -45,28 +45,28 @@ public class LatLonAltAnalyzerTest {
 
 	@Test
 	public void binToLatCPRFormatTestテストデータ11行目で0_706932を返す(){
-		double actual	= binToLatCPRFormat(fileReadLineBinary(11));
+		double actual	= lat_cpr(fileReadLineBinary(11));
 		double expected	= 0.7069320678710938;
 		assertThat(actual, is(expected));
 	}
 
 	@Test
 	public void binToLatCPRFormatTestテストデータ32行目で0_612022を返す(){
-		double actual	= binToLatCPRFormat(fileReadLineBinary(32));
+		double actual	= lat_cpr(fileReadLineBinary(32));
 		double expected	= 0.6120223999023438;
 		assertThat(actual, is(expected));
 	}
 
 	@Test
 	public void calcLatOTestテストデータ11_32行目で34_24285を返す(){
-		double actual	= calcLatO(fileReadLineBinary(11),fileReadLineBinary(32));
+		double actual	= latO(fileReadLineBinary(11),fileReadLineBinary(32));
 		double expected	= 34.24284854177701;
 		assertThat(actual, is(expected));
 	}
 
 	@Test
 	public void calcLatETestテストデータ11_32行目で34_24285を返す(){
-		double actual	= calcLatE(fileReadLineBinary(11),fileReadLineBinary(32));
+		double actual	= latE(fileReadLineBinary(11),fileReadLineBinary(32));
 		double expected	= 34.24159240722656;
 		assertThat(actual, is(expected));
 	}
@@ -74,43 +74,43 @@ public class LatLonAltAnalyzerTest {
 
 	@Test
 	public void countOfLatZoneTest0度で59個を返す() {
-		int actual		= countOfLatZone(0);
+		int actual		= nl(0);
 		int expected	= 59;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTest86_5度で3個を返す() {
-		int actual		= countOfLatZone(86.5);
+		int actual		= nl(86.5);
 		int expected	= 3;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTest86度で3個を返す() {
-		int actual		= countOfLatZone(86);
+		int actual		= nl(86);
 		int expected	= 3;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTest87度で2個を返す() {
-		int actual		= countOfLatZone(87);
+		int actual		= nl(87);
 		int expected	= 2;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTest88度で1個を返す() {
-		int actual		= countOfLatZone(88);
+		int actual		= nl(88);
 		int expected	= 1;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTestマイナス86_6度で2個を返す() {
-		int actual		= countOfLatZone(-86.6);
+		int actual		= nl(-86.6);
 		int expected	= 2;
 		assertThat(actual, is(expected));
 	}
 	@Test
 	public void countOfLatZoneTestマイナス89度で1個を返す() {
-		int actual		= countOfLatZone(-89);
+		int actual		= nl(-89);
 		int expected	= 1;
 		assertThat(actual, is(expected));
 	}
