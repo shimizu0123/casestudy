@@ -49,7 +49,7 @@ public class DB_Item_CallSign {
 
 	@Override
 	public String toString(){
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:MM:ss:SSS");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss:SSS");
 		return ("CallSign," + sdf.format(timeStamp_) + "," + modeSAddress_ + "," + callSign_);
 	}
 
