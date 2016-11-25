@@ -8,24 +8,27 @@ import static casestudy.TypeCode.*;
 import java.util.ArrayList;
 
 /**
- * ADSBからのデータを解析
+ * ADSBからのデータを解析するクラス
  */
 public class EvenAndOddMatcher {
 
-	/**
-	 * DELETE_TIME=削除のしきい値(ms)
-	 */
+	/** DELETE_TIME=削除のしきい値(ms) */
 	static final long DELETE_TIME = 1000 * 10;
+
+	/** evenデータを格納 */
 	static ArrayList<Data> evenDataList = new ArrayList<Data>();
+
+	/** oddデータを格納 */
 	static ArrayList<Data> oddDataList = new ArrayList<Data>();
 
 	/**
 	 * 受信した受信した生データ(16進数表記かつスペースで区切られている)を解析し、各DB-Itemを作る
 	 * @param hexRawData
-	 * @return
+	 * @return 各DB_Item
 	 */
 	public static String analyzeData(String hexRawData){
 
+		//受信した生データを解析処理可能なものか判別する
 		if(hexRawDataCheck(hexRawData)){
 
 			String binaryRawData = HexToBinary.hexToBinary(hexRawData);
@@ -56,7 +59,7 @@ public class EvenAndOddMatcher {
 	/**
 	 * SBS-3から受信した生データ(16進数表記かつスペースで区切られている)のフォーマットが正しいか判別
 	 * @param hexRawData
-	 * @return フォーマットが正しいときtrue、それ以外はfalse
+	 * @return フォーマットが正しいときtrueを返す
 	 */
 	private static boolean hexRawDataCheck(String hexRawData){
 		if(hexRawData.length() == 75){
@@ -68,7 +71,7 @@ public class EvenAndOddMatcher {
 	/**
 	 * ダウンリンクフォーマットが17(ADS-Bデータ)か判別する
 	 * @param rawData
-	 * @return DF(ダウンリンクフォーマット)が17のときtrue、それ以外はfalseを返す
+	 * @return DF(ダウンリンクフォーマット)が17のときtrueを返す
 	 */
 	private static boolean judgedADS_B_Data(String rawData) {
 		return createDownLinkFormatNo(rawData) == 17;
