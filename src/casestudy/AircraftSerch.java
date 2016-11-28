@@ -25,7 +25,7 @@ public class AircraftSerch  extends Thread {
 		Position[] posi = null;
 		Callsign[] call = null;
 		int j=0;
-		while(j!=10){
+		while(j!=1000){
 			try{
 				con = ConnectionManager.getConnection();
 				System.out.println("接続完了");
@@ -39,7 +39,7 @@ public class AircraftSerch  extends Thread {
 				velo = veDAO.findvelo(posi);
 				call = caDAO.findcall(posi);
 
-				Thread.sleep(5000);
+				Thread.sleep(500);
 
 				if(posi == null || call == null || velo == null ){
 					System.out.println("そのような航空機くわはら");
@@ -49,7 +49,9 @@ public class AircraftSerch  extends Thread {
 					int i=0;
 					int k=0;
 
-						if(call[0]==null || posi[0]==null || velo[0]==null){System.out.println("oppai");}
+						if(posi[0]==null){System.out.println("oppaiposi");}
+						if(velo[0]==null){System.out.println("oppaivelo");}
+						if(call[0]==null){System.out.println("oppaicall");}
 						while(posi[i]!=null){
 							if(call[i]==null || posi[i]==null || velo[i]==null){System.out.println("さとうなるです！\n\n");}
 							else{
@@ -82,24 +84,26 @@ public class AircraftSerch  extends Thread {
 
 				          Element aircrafts = document.createElement("aircrafts");
 				          document.appendChild(aircrafts);
-				      	System.out.println("おっぱい");
+				      	//System.out.println("おっぱい");
 				          while(posi[i]!=null){
-				          Element aircraft = document.createElement("aircraft");
-				  		System.out.println("おっぱい");
-							if(call[i]==null || posi[i]==null || velo[i]==null){System.out.println("さとうなるです！\n\n");}
-							else{
-				          aircraft.setAttribute("modeSaddress",velo[i].getModes());
-				          aircraft.setAttribute("callsign",call[i].getCallsign() );
-				          aircraft.setAttribute("latitude",String.valueOf(posi[i].getLat()));
-				          aircraft.setAttribute("longitude",String.valueOf(posi[i].getLng()));
-				          aircraft.setAttribute("altitude",String.valueOf(posi[i].getAlt()));
-				          aircraft.setAttribute("h_velo",String.valueOf(velo[i].getH_velo()));
-				          aircraft.setAttribute("v_velo",String.valueOf(velo[i].getV_velo()));
-				          aircraft.setAttribute("h_dir",String.valueOf(velo[i].getH_dir()));
-				          aircraft.setAttribute("v_dir",String.valueOf(velo[i].getV_dir()));
-				          aircrafts.appendChild(aircraft);
-							}
-				          i++;
+						          Element aircraft = document.createElement("aircraft");
+						  		  System.out.println("おっぱい");
+									if(call[i]==null || posi[i]==null || velo[i]==null){System.out.println("XMLには全機体そろってないから書き込めない\n\n");}
+									else{
+						          aircraft.setAttribute("modeSaddress",velo[i].getModes());
+						          aircraft.setAttribute("callsign",call[i].getCallsign() );
+						          aircraft.setAttribute("latitude",String.valueOf(posi[i].getLat()));
+						          aircraft.setAttribute("longitude",String.valueOf(posi[i].getLng()));
+						          aircraft.setAttribute("altitude",String.valueOf(posi[i].getAlt()));
+						          aircraft.setAttribute("h_velo",String.valueOf(velo[i].getH_velo()));
+						          aircraft.setAttribute("v_velo",String.valueOf(velo[i].getV_velo()));
+						          aircraft.setAttribute("h_dir",String.valueOf(velo[i].getH_dir()));
+						          aircraft.setAttribute("v_dir",String.valueOf(velo[i].getV_dir()));
+						          aircraft.setAttribute("timestamp",String.valueOf(posi[i].getTimestamp()));
+
+						          aircrafts.appendChild(aircraft);
+									}
+						          i++;
 				          }
 
 

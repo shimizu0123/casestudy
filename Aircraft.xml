@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<aircrafts/>
+<aircrafts>
+<aircraft altitude="19250.0" callsign="KAL732__" h_dir="77.0" h_velo="347.86" latitude="36.367493" longitude="137.61533" modeSaddress="71bf18" timestamp="2016-11-28 11:56:22.358" v_dir="0.0" v_velo="21.0"/>
+</aircrafts>

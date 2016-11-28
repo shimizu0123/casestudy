@@ -1,18 +1,10 @@
 package casestudy;
 
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-
-public class RealDataTest {
-
+public class RealData extends Thread{
 	final static String ipAddress = "192.168.3.171";
 	final static int portNum = 10001;
 
-
-	@Category(SlowTests.class)
-	@Test
-	public void SBS3を使用したテスト() {
-
+	public void run(){
 		SensorAccessObject testSOA = new SensorAccessObject(ipAddress, portNum);
 
 		/*
@@ -23,11 +15,7 @@ public class RealDataTest {
 		/*
 		 * 500行分のデータを受信、解析する
 		 */
-
-
 		try{
-
-
 
 			AircraftSerch kurachan = new AircraftSerch();
 
@@ -47,7 +35,11 @@ public class RealDataTest {
 			testSOA.close();
 			System.out.println("*** 終了 ***");
 		}
-
 	}
+	@Override
+	public void start(){
+		super.start();
+	}
+
 
 }

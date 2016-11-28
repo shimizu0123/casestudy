@@ -13,12 +13,15 @@ public class PositionDAO {
 	}
 
 	public Position[] findposi() throws SQLException {
-		String sql = "select modes,latitude,longitude,altitude from position where timestamp in (select max(timestamp) from position group by modes)  and  extract(second from systimestamp)-extract(second from timestamp)  < 10"
-				+"and  extract(year from systimestamp)-extract(year from timestamp)=0"
-				+ "and  extract(month from systimestamp)-extract(month from timestamp)=0"
-				+"and  extract(day from systimestamp)-extract(day from timestamp)=0"
-				+"and  extract(hour from systimestamp)-extract(hour from timestamp)=0"
-				+"and  extract(minute from systimestamp)-extract(minute from timestamp)=0";
+		String sql = "select * from position where timestamp in (select max(timestamp) from position group by modes)"
+				+ "and  timestamp > systimestamp-0.0004";
+				//+"and  extract(second from systimestamp)-extract(second from timestamp)  < 10"
+				//+"and  extract(minute from timestamp)-extract(minute from systimestamp)=0"
+				//+"and  extract(hour from timestamp)-extract(hour from systimestamp)=0";
+				//+"and  extract(day from timestamp)=extract(day from sysdate)"
+				//+"and  extract(month from timestamp)=extract(month from sysdate)"
+				//+"and  extract(year from timestamp) = extract(year from sysdate)";
+
 		PreparedStatement stmt = null;
 		ResultSet res = null;
 		Position posi[] = new Position[100];
@@ -37,7 +40,8 @@ public class PositionDAO {
 						res.getString("modes"),
 						res.getFloat("latitude"),
 						res.getFloat("longitude"),
-						res.getFloat("altitude")
+						res.getFloat("altitude"),
+						res.getTimestamp("timestamp")
 						);
 				i++;
 
