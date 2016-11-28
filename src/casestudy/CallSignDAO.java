@@ -6,28 +6,29 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * コールサインテーブルのDAO
+ * CALLSIGNテーブルのDAO
  */
-public class CallsignDAO {
+public class CallSignDAO {
+
 	private  Connection con;
 
-	/**
-	 * DBと接続する
-	 * @param con
-	 */
-	public CallsignDAO(Connection con) {
+	public CallSignDAO(Connection con) {
 		this.con = con;
 	}
 
 	/**
 	 * DBにデータを格納する
-	 * @param callsign CallSignオブジェクト
+	 * @param callsign DB_Item_CallSignオブジェクト
 	 */
-	public DB_Item_CallSign insertcallsign(DB_Item_CallSign callsign) throws SQLException{
-		String sql = "INSERT INTO callsign(modes, callsign, timestamp)"+
-					"VALUES(?,?,systimestamp)";
+	public void insertCallSign(DB_Item_CallSign callsign) throws SQLException{
+
+		String sql = 	"INSERT INTO callsign(modes, callsign, timestamp)"
+						+ "VALUES(?,?,systimestamp)";
+
 		PreparedStatement stmt = null;
+
 		try {
+
 			stmt = con.prepareStatement(sql);
 
 			stmt.setString(1,callsign.getModeSAddress());
@@ -41,6 +42,7 @@ public class CallsignDAO {
 				stmt.close();
 			}
 		}
-		return callsign;
+
 	}
+
 }

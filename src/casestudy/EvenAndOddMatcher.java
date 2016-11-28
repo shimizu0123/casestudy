@@ -41,13 +41,13 @@ public class EvenAndOddMatcher {
 				if(judgedADS_B_Data(binaryRawData)){
 
 					if(			createTypeCode(binaryRawData) == CALL_SIGN){
-						DB_Item_Generator.dB_Item_CallSign_Generate(modeS_Analyze(binaryRawData), calcCallSign(binaryRawData));
+						DB_Item_Generator.dB_Item_Generate(modeS_Analyze(binaryRawData), calcCallSign(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == VELOCITY){
-						DB_Item_Generator.dB_Item_Velocity_Generate(modeS_Analyze(binaryRawData), VelocityFactory.calc_velocity(binaryRawData));
+						DB_Item_Generator.dB_Item_Generate(modeS_Analyze(binaryRawData), VelocityFactory.calc_velocity(binaryRawData));
 					}else if(	createTypeCode(binaryRawData) == PLANE_POSITION){
 						planePosition = rawDataToPlanePosition(binaryRawData);
 						if(!(planePosition == null)){
-							DB_Item_Generator.dB_Item_PlanePosition_Generate(modeS_Analyze(binaryRawData), planePosition);
+							DB_Item_Generator.dB_Item_Generate(modeS_Analyze(binaryRawData), planePosition);
 						}
 					}
 				}

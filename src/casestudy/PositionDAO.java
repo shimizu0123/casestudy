@@ -3,6 +3,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * POSITIONテーブルのDAO
+ */
 public class PositionDAO {
 
 	private  Connection con;
@@ -11,11 +14,19 @@ public class PositionDAO {
 		this.con = con;
 	}
 
-	public DB_Item_PlanePosition insertposition(DB_Item_PlanePosition position) throws SQLException{
-		String sql = "INSERT INTO position(modeS,  latitude, longitude, altitude, timestamp)"+
-					"VALUES(?,?,?,?,systimestamp)";
+	/**
+	 * DBにデータを格納する
+	 * @param position DB_Item_PlanePositionオブジェクト
+	 */
+	public void insertPosition(DB_Item_PlanePosition position) throws SQLException{
+
+		String sql = 	"INSERT INTO position(modeS,  latitude, longitude, altitude, timestamp)"
+						+ "VALUES(?,?,?,?,systimestamp)";
+
 		PreparedStatement stmt = null;
+
 		try {
+
 			stmt = con.prepareStatement(sql);
 
 			stmt.setString(1,position.getModeSAddress());
@@ -23,7 +34,8 @@ public class PositionDAO {
 			stmt.setDouble(3,position.getPlanePosition().getLat());
 			stmt.setDouble(4,position.getPlanePosition().getAlt());
 
-			stmt.executeUpdate();//追加するinsert
+			//追加するinsert
+			stmt.executeUpdate();
 
 		} finally {
 			if (stmt != null){
@@ -31,6 +43,6 @@ public class PositionDAO {
 			}
 		}
 
-		return position;
 	}
+
 }

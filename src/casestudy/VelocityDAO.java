@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * VELOCITYテーブルのDAO
+ */
 public class VelocityDAO {
 
 	private  Connection con;
@@ -12,11 +15,19 @@ public class VelocityDAO {
 		this.con = con;
 	}
 
-	public DB_Item_Velocity insertvelocity(DB_Item_Velocity velocity) throws SQLException{
-		String sql = "INSERT INTO velocity(modes, H_velocity, V_velocity, H_direction, V_direction, timestamp)"+
-					"VALUES(?,?,?,?,?,systimestamp)";
+	/**
+	 * DBにデータを格納する
+	 * @param velocity DB_Item_Velocityオブジェクト
+	 */
+	public void insertvelocity(DB_Item_Velocity velocity) throws SQLException{
+
+		String sql = 	"INSERT INTO velocity(modes, H_velocity, V_velocity, H_direction, V_direction, timestamp)"
+						+ "VALUES(?,?,?,?,?,systimestamp)";
+
 		PreparedStatement stmt = null;
+
 		try {
+
 			stmt = con.prepareStatement(sql);
 
 			stmt.setString(1,velocity.getModeSAddress());
@@ -26,7 +37,8 @@ public class VelocityDAO {
 			stmt.setInt(5,velocity.getVelocity().getS_Vr());
 //			stmt.setLong(6,velocity.getTimeStamp());
 
-			stmt.executeUpdate();//追加するinsert
+			//追加するinsert
+			stmt.executeUpdate();
 
 		} finally {
 			if (stmt != null){
@@ -34,6 +46,6 @@ public class VelocityDAO {
 			}
 		}
 
-		return velocity;
 	}
+
 }
