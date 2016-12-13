@@ -31,11 +31,13 @@ public class EvenAndOddMatcher {
 		//受信した生データを解析処理可能なものか判別する
 		if(hexRawDataCheck(hexRawData)){
 
+			System.out.println(hexRawData);
+
 			String binaryRawData = HexToBinary.hexToBinary(hexRawData);
 			PlanePosition planePosition = null;
 
 			//受信データのパリティチェック
-			if(parityCheck(binaryRawData)){
+			if(true/*parityCheck(binaryRawData)*/){
 
 				//ADS-Bデータか判別
 				if(judgedADS_B_Data(binaryRawData)){
